@@ -20,18 +20,19 @@ Deze bachelorproef beoogt een diepgaand begrip van de rendercyclussen in SwiftUI
 
 %---------- Stand van zaken ---------------------------------------------------
 
-\section{State-of-the-art}%
+\section{Literatuurstudie}%
 \label{sec:state-of-the-art}
 
-Hier beschrijf je de \emph{state-of-the-art} rondom je gekozen onderzoeksdomein, d.w.z.\ een inleidende, doorlopende tekst over het onderzoeksdomein van je bachelorproef. Je steunt daarbij heel sterk op de professionele \emph{vakliteratuur}, en niet zozeer op populariserende teksten voor een breed publiek. Wat is de huidige stand van zaken in dit domein, en wat zijn nog eventuele open vragen (die misschien de aanleiding waren tot je onderzoeksvraag!)?
+\subsection{Passing Data to SwiftUI Views~\autocite{SwiftDevJournal}}
+In dit artikel worden waardevolle inzichten gepresenteerd met betrekking tot diverse benaderingen voor het doorgeven van gegevens naar SwiftUI-views. Het artikel identificeert expliciet drie methoden voor gegevensoverdracht aan views en biedt daarmee cruciale informatie voor ons begrip van dit onderwerp.
 
-Je mag de titel van deze sectie ook aanpassen (literatuurstudie, stand van zaken, enz.). Zijn er al gelijkaardige onderzoeken gevoerd? Wat concluderen ze? Wat is het verschil met jouw onderzoek?
+\subsection{Deep Inside Views, State and Performance in SwiftUI~\autocite{Long2020}}
+Deze bron onthult dat veel bedrijven en softwareontwikkelaars nog steeds vasthouden aan de denkwijze van UIKit in plaats van de nieuwe benadering van SwiftUI-views. Het is van belang te benadrukken dat UIKit en SwiftUI views twee verschillende concepten zijn. Deze neiging om vast te houden aan de oudere UIKit-mentaliteit kan potentiële verwarring veroorzaken bij het doorgeven van gegevens naar views in SwiftUI.
 
-Verwijs bij elke introductie van een term of bewering over het domein naar de vakliteratuur, bijvoorbeeld~\autocite{Hykes2013}! Denk zeker goed na welke werken je refereert en waarom.
+\subsection{SwiftUI Performance Tuning: Tips and Tricks~\autocite{Amisha2022}}
+Uit deze bron blijkt dat het gebruik van de annotaties @Binding en @State voor het doorgeven van gegevens efficiënter is dan het gebruik van @ObservedObject en @EnvironmentObject.
 
-Draag zorg voor correcte literatuurverwijzingen! Een bronvermelding hoort thuis \emph{binnen} de zin waar je je op die bron baseert, dus niet er buiten! Maak meteen een verwijzing als je gebruik maakt van een bron. Doe dit dus \emph{niet} aan het einde van een lange paragraaf. Baseer nooit teveel aansluitende tekst op eenzelfde bron.
 
-Als je informatie over bronnen verzamelt in JabRef, zorg er dan voor dat alle nodige info aanwezig is om de bron terug te vinden (zoals uitvoerig besproken in de lessen Research Methods).
 
 % Voor literatuurverwijzingen zijn er twee belangrijke commando's:
 % \autocite{KEY} => (Auteur, jaartal) Gebruik dit als de naam van de auteur
@@ -40,7 +41,7 @@ Als je informatie over bronnen verzamelt in JabRef, zorg er dan voor dat alle no
 %   functie heeft in de zin (bv. ``Uit onderzoek door Doll & Hill (1954) bleek
 %   ...'')
 
-Je mag deze sectie nog verder onderverdelen in subsecties als dit de structuur van de tekst kan verduidelijken.
+
 
 %---------- Methodologie ------------------------------------------------------
 \section{Methodologie}%
