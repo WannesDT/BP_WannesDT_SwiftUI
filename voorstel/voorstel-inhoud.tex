@@ -23,13 +23,19 @@ Deze bachelorproef beoogt een diepgaand begrip van de rendercyclussen in SwiftUI
 \section{Literatuurstudie}%
 \label{sec:state-of-the-art}
 
-\subsection{Passing Data to SwiftUI Views~\autocite{SwiftDevJournal}}
+% Dit is vloeiende tekst
+% Uit enkele relevante studies kunnen we concluderen dat er veel vraag en verwarring is rond de correcte manier van data doorgeven aan SwiftUI views. Verschillende bronnen benadrukken dit thema en bieden waardevolle inzichten. Het artikel "Passing Data to SwiftUI Views"~\autocite{SwiftDevJournal} identificeert expliciet drie methoden voor gegevensoverdracht aan views, wat cruciale informatie verschaft voor een dieper begrip van dit onderwerp. Bovendien onthult de studie "Deep Inside Views, State and Performance in SwiftUI"~\autocite{Long2020} dat veel bedrijven en ontwikkelaars nog steeds vasthouden aan de denkwijze van UIKit, wat potentieel verwarrend kan zijn bij het doorgeven van gegevens naar views in SwiftUI. Deze bevindingen benadrukken het belang van een helder begrip van de verschillen tussen UIKit en SwiftUI views. Binnen het kader van prestatieoptimalisatie, zoals besproken in "SwiftUI Performance Tuning: Tips and Tricks"~\autocite{Amisha2022}, wordt aanbevolen om de annotaties @Binding en @State te gebruiken voor efficiënte gegevensoverdracht, aangezien deze methoden een betere prestatie laten zien in vergelijking met @ObservedObject en @EnvironmentObject.
+
+\textbf{Passing Data to SwiftUI Views~\autocite{SwiftDevJournal}}
+
 In dit artikel worden waardevolle inzichten gepresenteerd met betrekking tot diverse benaderingen voor het doorgeven van gegevens naar SwiftUI-views. Het artikel identificeert expliciet drie methoden voor gegevensoverdracht aan views en biedt daarmee cruciale informatie voor ons begrip van dit onderwerp.
 
-\subsection{Deep Inside Views, State and Performance in SwiftUI~\autocite{Long2020}}
+\textbf{Deep Inside Views, State and Performance in SwiftUI~\autocite{Long2020}}
+
 Deze bron onthult dat veel bedrijven en softwareontwikkelaars nog steeds vasthouden aan de denkwijze van UIKit in plaats van de nieuwe benadering van SwiftUI-views. Het is van belang te benadrukken dat UIKit en SwiftUI views twee verschillende concepten zijn. Deze neiging om vast te houden aan de oudere UIKit-mentaliteit kan potentiële verwarring veroorzaken bij het doorgeven van gegevens naar views in SwiftUI.
 
-\subsection{SwiftUI Performance Tuning: Tips and Tricks~\autocite{Amisha2022}}
+\textbf{SwiftUI Performance Tuning: Tips and Tricks\newline ~\autocite{Amisha2022}}
+
 Uit deze bron blijkt dat het gebruik van de annotaties @Binding en @State voor het doorgeven van gegevens efficiënter is dan het gebruik van @ObservedObject en @EnvironmentObject.
 
 
@@ -47,25 +53,66 @@ Uit deze bron blijkt dat het gebruik van de annotaties @Binding en @State voor h
 \section{Methodologie}%
 \label{sec:methodologie}
 
-Hier beschrijf je hoe je van plan bent het onderzoek te voeren. Welke onderzoekstechniek ga je toepassen om elk van je onderzoeksvragen te beantwoorden? Gebruik je hiervoor literatuurstudie, interviews met belanghebbenden (bv.~voor requirements-analyse), experimenten, simulaties, vergelijkende studie, risico-analyse, PoC, \ldots?
+\subsection{Onderzoekstechniek}
+Dit onderzoek zal hoofdzakelijk gebruikmaken van een vergelijkende studie om de impact van verschillende methoden voor gegevensoverdracht naar SwiftUI views te analyseren. De primaire focus ligt op het vergelijken van de prestaties, renderingfrequentie en levenscycli van bindings bij het toepassen van verschillende benaderingen. De vergelijkende studie omvat het op lijsten van alle verschillende manieren om data door te geven aan SwiftUI views en langs elkaar zetten wat ieder zijn impact op performance is, hoeveel keer views gererendered  worden en wat de lifecycles van deze bindings zijn. 
 
-Valt je onderwerp onder één van de typische soorten bachelorproeven die besproken zijn in de lessen Research Methods (bv.\ vergelijkende studie of risico-analyse)? Zorg er dan ook voor dat we duidelijk de verschillende stappen terug vinden die we verwachten in dit soort onderzoek!
+\subsection{Tools}
+\textbf{Xcode en SwiftUI Framework}
 
-Vermijd onderzoekstechnieken die geen objectieve, meetbare resultaten kunnen opleveren. Enquêtes, bijvoorbeeld, zijn voor een bachelorproef informatica meestal \textbf{niet geschikt}. De antwoorden zijn eerder meningen dan feiten en in de praktijk blijkt het ook bijzonder moeilijk om voldoende respondenten te vinden. Studenten die een enquête willen voeren, hebben meestal ook geen goede definitie van de populatie, waardoor ook niet kan aangetoond worden dat eventuele resultaten representatief zijn.
+De ontwikkelingsomgeving Xcode, met het SwiftUI framework, zal worden gebruikt om praktische implementaties uit te voeren en de impact van verschillende dataoverdrachtsmethoden te meten.
 
-Uit dit onderdeel moet duidelijk naar voor komen dat je bachelorproef ook technisch voldoen\-de diepgang zal bevatten. Het zou niet kloppen als een bachelorproef informatica ook door bv.\ een student marketing zou kunnen uitgevoerd worden.
+\textbf{XCTest framework}
 
-Je beschrijft ook al welke tools (hardware, software, diensten, \ldots) je denkt hiervoor te gebruiken of te ontwikkelen.
+Dit framework zorgt ervoor dat we performantie kunnen waarnemen in swiftUI.
 
-Probeer ook een tijdschatting te maken. Hoe lang zal je met elke fase van je onderzoek bezig zijn en wat zijn de concrete \emph{deliverables} in elke fase?
+\textbf{Google en Apple Developer Website}
+
+Deze applicaties gaan we gebruiken om info te vergaren over SwiftUI en de werking van Swift.
+
+
+\subsection{Tijdschatting}
+De totale geschate tijd die nodig is zijn 15 weken waarbij ruimte is voor mogelijke aanpassingen afhankelijk van de specifieke behoeften van elke fase.
+
+\textbf{Voorstel}
+\begin{itemize}
+    \item {2 Weken}
+    \item {Voorstel uitschrijven in een LaTeX document}
+    \item {Opzetten van github repo}
+\end{itemize}
+
+\textbf{Implementatie en metingen}
+\begin{itemize}
+    \item {8 Weken}
+    \item {Gedocumenteerde implementatie van de onderzoeksopdracht}
+    \item {Meetresultaten waarnemen van presentaties en rendering}
+\end{itemize}
+
+\textbf{Vergelijkende analyse}
+\begin{itemize}
+    \item {1 Week}
+    \item {Analyse van de resultaten en vergelijken}
+\end{itemize}
+
+\textbf{Schrijven thesis}
+\begin{itemize}
+    \item {4 Week}
+    \item {Voltooide thesis met inbegrip van introductie, literatuurstudie, methodologie, resultaten, discussie, conclusies}
+\end{itemize}
+
+
 
 %---------- Verwachte resultaten ----------------------------------------------
-\section{Verwacht resultaat, conclusie}%
+\section{Verwacht resultaat, conclusie}
 \label{sec:verwachte_resultaten}
 
-Hier beschrijf je welke resultaten je verwacht. Als je metingen en simulaties uitvoert, kan je hier al mock-ups maken van de grafieken samen met de verwachte conclusies. Benoem zeker al je assen en de onderdelen van de grafiek die je gaat gebruiken. Dit zorgt ervoor dat je concreet weet welk soort data je moet verzamelen en hoe je die moet meten.
 
-Wat heeft de doelgroep van je onderzoek aan het resultaat? Op welke manier zorgt jouw bachelorproef voor een meerwaarde?
+\subsection{Verwacht resultaat}
+We verwachten uit de vergelijkende studie een duidelijk inzicht te verkrijgen in de impact van verschillende methoden voor gegevensoverdracht naar SwiftUI views op prestaties, renderingfrequentie en levenscycli van bindings. De metingen zullen waarschijnlijk resulteren in kwantificeerbare gegevens die de efficiëntie van de @Binding, @State, @ObservedObject en @EnvironmentObject in verschillende scenario's illustreren.
 
-Hier beschrijf je wat je verwacht uit je onderzoek, met de motivatie waarom. Het is \textbf{niet} erg indien uit je onderzoek andere resultaten en conclusies vloeien dan dat je hier beschrijft: het is dan juist interessant om te onderzoeken waarom jouw hypothesen niet overeenkomen met de resultaten.
+\subsection{Conclusie}
+We verwachten dat de @Binding en @State het best zullen uitkomen wat betreft prestaties en renderingfrequentie, terwijl @ObservedObject en @EnvironmentObject mogelijk meer resources vereisen. De levenscyclusgrafiek van bindings zal waarschijnlijk aangeven dat @Binding en @State bindings een meer voorspelbare levensduur hebben in vergelijking met @ObservedObject en @EnvironmentObject.
+
+\subsection{Meerwaarde doelgroep}
+De doelgroep, bestaande uit SwiftUI ontwikkelaars en IOS applicatie ontwikkelaars, zal profiteren van concrete inzichten in welke gegevensoverdrachtsmethoden de voorkeur verdienen in verschillende scenario's. Door de resultaten van dit onderzoek kunnen zij goede keuzes maken bij het ontwerpen van efficiënte gebruikersinterfaces in SwiftUI. De meerwaarde van deze bachelorproef ligt in het bieden van praktische richtlijnen die direct toepasbaar zijn in de dagelijkse praktijk van iOS applicatieontwikkeling, en zo bijdragen aan de optimalisatie van SwiftUI gebaseerde projecten.
+
 
