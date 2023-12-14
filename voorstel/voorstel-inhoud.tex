@@ -23,6 +23,37 @@ Deze bachelorproef beoogt een diepgaand begrip van de rendercyclussen in SwiftUI
 \section{Literatuurstudie}%
 \label{sec:state-of-the-art}
 
+Uit al de volgende bronnen kunnen we informatie halen omtrent verschillende manieren van data doorgeven in SwiftUI. Zo zijn er deze 6 Veelgebruikte methoden:
+\newline\textbf{@State:}
+\begin{itemize}
+    \item {Lokale en eenvoudige gegevensopslag die het gedrag van een view beïnvloeden.}
+    \item {Wordt meestal gebruikt voor primitieve gegevenstypes zoals integers, strings en boole-\newline ans.}
+\end{itemize}
+\textbf{@Binding:}
+\begin{itemize}
+    \item {Het doorgeven van gegevens tussen de ouder-view en de onderliggende view.}
+    \item {De waarde wordt doorgegeven als een binding, waardoor de onderliggende view de waarde kan wijzigen.}
+\end{itemize}
+\textbf{@ObservedObject:}
+\begin{itemize}
+    \item {Het doorgeven van gegevens die door een externe klasse worden beheerd en waarmee de view wordt geïnformeerd over wijzigingen.}
+    \item {Vereist het gebruik van een ObservableObject klasse.}
+\end{itemize}
+\textbf{@EnvironmentObject:}
+\begin{itemize}
+    \item {Het doorgeven van gegevens die door een externe klasse worden beheerd, toegankelijk voor de hele app zonder expliciete doorgifte.}
+    \item {Vereist het gebruik van een ObservableObject-klasse en wordt vaak gebruikt voor gedeelde gegevens zoals gebruikersauthenticatie.}
+\end{itemize}
+\textbf{@StateObject:}
+\begin{itemize}
+    \item {Vergelijkbaar met @ObservedObject, maar met een levenscyclus die is gebonden aan de view.}
+    \item {Wordt geïnitialiseerd en beheerd door de view en kan worden gebruikt voor het bijhouden van de status van de view.}
+\end{itemize}
+\textbf{@Binding in init:}
+\begin{itemize}
+    \item {Het initialiseren van een binding tijdens de init-fase van een view.}
+    \item {Maakt het mogelijk om een binding te maken en door te geven bij de creatie van de view.}
+\end{itemize}
 % Dit is vloeiende tekst
 % Uit enkele relevante studies kunnen we concluderen dat er veel vraag en verwarring is rond de correcte manier van data doorgeven aan SwiftUI views. Verschillende bronnen benadrukken dit thema en bieden waardevolle inzichten. Het artikel "Passing Data to SwiftUI Views"~\autocite{SwiftDevJournal} identificeert expliciet drie methoden voor gegevensoverdracht aan views, wat cruciale informatie verschaft voor een dieper begrip van dit onderwerp. Bovendien onthult de studie "Deep Inside Views, State and Performance in SwiftUI"~\autocite{Long2020} dat veel bedrijven en ontwikkelaars nog steeds vasthouden aan de denkwijze van UIKit, wat potentieel verwarrend kan zijn bij het doorgeven van gegevens naar views in SwiftUI. Deze bevindingen benadrukken het belang van een helder begrip van de verschillen tussen UIKit en SwiftUI views. Binnen het kader van prestatieoptimalisatie, zoals besproken in "SwiftUI Performance Tuning: Tips and Tricks"~\autocite{Amisha2022}, wordt aanbevolen om de annotaties @Binding en @State te gebruiken voor efficiënte gegevensoverdracht, aangezien deze methoden een betere prestatie laten zien in vergelijking met @ObservedObject en @EnvironmentObject.
 
@@ -37,6 +68,17 @@ Deze bron onthult dat veel bedrijven en softwareontwikkelaars nog steeds vasthou
 \textbf{SwiftUI Performance Tuning: Tips and Tricks\newline ~\autocite{Amisha2022}}
 
 Uit deze bron blijkt dat het gebruik van de annotaties @Binding en @State voor het doorgeven van gegevens efficiënter is dan het gebruik van @ObservedObject en @EnvironmentObject.
+
+
+\textbf{Pro iPhone Development with SwiftUI~\autocite{WangWallace2022PIDw}}
+
+Uit dit onderzoek kunnen we halen dat State variabelen handig zijn voor het opslaan van afzonderlijke data blocks zoals integers (Int), decimale getallen (Double of Float), of tekst (String). Bindingsvariabelen zijn nuttig voor het aanpassen van Staatsvariabelen vanuit een andere structuur dan de structuur die de State variabele heeft gedefinieerd.
+
+\textbf{Asynchronous Programming with SwiftUI and Combine: Functional Programming to Build UIs on Apple Platforms~\autocite{friese2023state}}
+
+Uit dit boek kunnen we ook halen dat een @StateObject, @ObservedObject, of @EnvironmentObject, dus een ObservableObject gererenderd worden wanneer SwiftUi een verandering registreert binnen het State model. Dit houd in dat SwiftUI de actuele data in sync houd met de data die weergegeven word in de View. Ook kunnen we nuttige info vergaren uit dit boek over @StateObject. Ze beweren dat SwiftUi de lifecycle van het onderliggend object beheerd en zo er ook voor zou zorgen dat het maar 1 keer aangemaakt zou worden, Zelfs als SwiftUI de hele View opnieuw zou moeten maken. In tegenstelling tot @StateObject wordt @ObservedObject elke keer herbouwt nadat een SwiftUi View wordt herbouwd.
+
+Uit dit artikel kunnen we ook leren dat @EnvironmentObject geen veilige manier is van dataoverdracht omdat deze niet controleert of er wel een ObservableObject word geïnjecteerd. Hierdoor kan de applicatie onverwachts crashen.
 
 
 
@@ -54,7 +96,7 @@ Uit deze bron blijkt dat het gebruik van de annotaties @Binding en @State voor h
 \label{sec:methodologie}
 
 \subsection{Onderzoekstechniek}
-Dit onderzoek zal hoofdzakelijk gebruikmaken van een vergelijkende studie om de impact van verschillende methoden voor gegevensoverdracht naar SwiftUI views te analyseren. De primaire focus ligt op het vergelijken van de prestaties, renderingfrequentie en levenscycli van bindings bij het toepassen van verschillende benaderingen. De vergelijkende studie omvat het op lijsten van alle verschillende manieren om data door te geven aan SwiftUI views en langs elkaar zetten wat ieder zijn impact op performance is, hoeveel keer views gererendered  worden en wat de lifecycles van deze bindings zijn. 
+Dit onderzoek zal hoofdzakelijk gebruikmaken van een vergelijkende studie om de impact van verschillende methoden voor gegevensoverdracht naar SwiftUI views te analyseren. De primaire focus ligt op het vergelijken van de prestaties, renderingfrequentie en levenscycli van bindings bij het toepassen van verschillende benaderingen. De vergelijkende studie omvat het oplijsten van alle verschillende manieren om data door te geven aan SwiftUI views en langs elkaar zetten wat ieder zijn impact op performance is, hoeveel keer views gererendered  worden en wat de lifecycles van deze bindings zijn. 
 
 \subsection{Tools}
 \textbf{Xcode en SwiftUI Framework}
@@ -95,7 +137,7 @@ De totale geschate tijd die nodig is zijn 15 weken waarbij ruimte is voor mogeli
 
 \textbf{Schrijven thesis}
 \begin{itemize}
-    \item {4 Week}
+    \item {4 Weken}
     \item {Voltooide thesis met inbegrip van introductie, literatuurstudie, methodologie, resultaten, discussie, conclusies}
 \end{itemize}
 
