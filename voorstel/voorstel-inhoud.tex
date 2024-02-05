@@ -39,21 +39,32 @@ Uit al de volgende bronnen kunnen we informatie halen omtrent verschillende mani
     \item {Het doorgeven van gegevens die door een externe klasse worden beheerd en waarmee de view wordt geïnformeerd over wijzigingen.}
     \item {Vereist het gebruik van een ObservableObject klasse.}
 \end{itemize}
-\textbf{@EnvironmentObject:}
-\begin{itemize}
-    \item {Het doorgeven van gegevens die door een externe klasse worden beheerd, toegankelijk voor de hele app zonder expliciete doorgifte.}
-    \item {Vereist het gebruik van een ObservableObject-klasse en wordt vaak gebruikt voor gedeelde gegevens zoals gebruikersauthenticatie.}
-\end{itemize}
 \textbf{@StateObject:}
 \begin{itemize}
     \item {Vergelijkbaar met @ObservedObject, maar met een levenscyclus die is gebonden aan de view.}
     \item {Wordt geïnitialiseerd en beheerd door de view en kan worden gebruikt voor het bijhouden van de status van de view.}
+\end{itemize}
+\textbf{@Observable:}
+\begin{itemize}
+    \item {Een vervanging van vele oude methodes zoals State en Environment}
+    \item {Apple claimed dat deze nieuwe macro performanter is}
+\end{itemize}
+
+
+
+
+De volgende macro's zijn niet vergelijkbaar met de andere omdat deze een specifiek doel hebben maar zijn nog steeds de moeite om te vermelden:
+\newline\textbf{@EnvironmentObject:}
+\begin{itemize}
+    \item {Het doorgeven van gegevens die door een externe klasse worden beheerd, toegankelijk voor de hele app zonder expliciete doorgifte.}
+    \item {Vereist het gebruik van een ObservableObject-klasse en wordt vaak gebruikt voor gedeelde gegevens zoals gebruikersauthenticatie.}
 \end{itemize}
 \textbf{@Binding in init:}
 \begin{itemize}
     \item {Het initialiseren van een binding tijdens de init-fase van een view.}
     \item {Maakt het mogelijk om een binding te maken en door te geven bij de creatie van de view.}
 \end{itemize}
+
 % Dit is vloeiende tekst
 % Uit enkele relevante studies kunnen we concluderen dat er veel vraag en verwarring is rond de correcte manier van data doorgeven aan SwiftUI views. Verschillende bronnen benadrukken dit thema en bieden waardevolle inzichten. Het artikel "Passing Data to SwiftUI Views"~\autocite{SwiftDevJournal} identificeert expliciet drie methoden voor gegevensoverdracht aan views, wat cruciale informatie verschaft voor een dieper begrip van dit onderwerp. Bovendien onthult de studie "Deep Inside Views, State and Performance in SwiftUI"~\autocite{Long2020} dat veel bedrijven en ontwikkelaars nog steeds vasthouden aan de denkwijze van UIKit, wat potentieel verwarrend kan zijn bij het doorgeven van gegevens naar views in SwiftUI. Deze bevindingen benadrukken het belang van een helder begrip van de verschillen tussen UIKit en SwiftUI views. Binnen het kader van prestatieoptimalisatie, zoals besproken in "SwiftUI Performance Tuning: Tips and Tricks"~\autocite{Amisha2022}, wordt aanbevolen om de annotaties @Binding en @State te gebruiken voor efficiënte gegevensoverdracht, aangezien deze methoden een betere prestatie laten zien in vergelijking met @ObservedObject en @EnvironmentObject.
 
