@@ -5,13 +5,12 @@
 
 \documentclass[dutch,dit,thesis]{hogentreport}
 
-% TODO:
 % - If necessary, replace the option `dit`' with your own department!
 %   Valid entries are dbo, dbt, dgz, dit, dlo, dog, dsa, soa
 % - If you write your thesis in English (remark: only possible after getting
 %   explicit approval!), remove the option "dutch," or replace with "english".
 
-\usepackage{lipsum} % For blind text, can be removed after adding actual content
+\usepackage{lipsum} % TODO remove this: For blind text, can be removed after adding actual content 
 
 %% Pictures to include in the text can be put in the graphics/ folder
 \graphicspath{{graphics/}}
@@ -51,14 +50,14 @@
 % Other packages not already included can be imported here
 
 %%---------- Document metadata -------------------------------------------------
-% TODO: Replace this with your own information
-\author{Ernst Aarden}
-\supervisor{Dhr. F. Van Houte}
-\cosupervisor{Mevr. S. Beeckman}
-\title[Optionele ondertitel]%
-    {Titel van de bachelorproef}
+\author{Wannes De Tollenaere}
+\supervisor{Dhr. S. Van Impe}
+\cosupervisor{Dhr. D. Litjens}
+\title %[Optionele ondertitel]%
+    {Vergelijkende studie van render cyclussen in SwiftUI:
+        Impact op performance, rendering en lifecycles.}
 \academicyear{\advance\year by -1 \the\year--\advance\year by 1 \the\year}
-\examperiod{1}
+\examperiod{2}
 \degreesought{\IfLanguageName{dutch}{Professionele bachelor in de toegepaste informatica}{Bachelor of applied computer science}}
 \partialthesis{false} %% To display 'in partial fulfilment'
 %\institution{Internshipcompany BVBA.}
@@ -155,9 +154,16 @@
 Het onderwerp van deze bachelorproef is gebaseerd op een onderzoeksvoorstel dat vooraf werd beoordeeld door de promotor. Dat voorstel is opgenomen in deze bijlage.
 
 %% TODO: 
-%\section*{Samenvatting}
-
+\section*{Samenvatting}
 % Kopieer en plak hier de samenvatting (abstract) van je onderzoeksvoorstel.
+
+Dit bachelorproefvoorstel beoogt een diepgaande analyse van diverse methoden voor gegevensoverdracht naar
+SwiftUI-views, met een focus op de impact op performance, rendering en lifecycles. Het onderzoek zal een uitgebreide
+lijst van dataoverdrachtsmethoden omvatten, waarbij de nadruk ligt op het identificeren van verschillen
+in rendercyclussen. We zullen de frequentie van view-rendering onderzoeken, de algehele prestaties evalueren
+en de levenscycli van deze bindings analyseren. Door deze vergelijkende studie streven we ernaar om inzichten
+te brengen in de meest efficiënte methoden voor gegevensoverdracht in SwiftUI, waardoor ontwikkelaars beter
+geïnformeerde beslissingen kunnen nemen bij het ontwerpen van responsieve en performante gebruikersinterfaces.
 
 % Verwijzing naar het bestand met de inhoud van het onderzoeksvoorstel
 \input{../voorstel/voorstel-inhoud}
