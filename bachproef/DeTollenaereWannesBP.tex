@@ -12,6 +12,28 @@
 
 \usepackage{lipsum} % TODO remove this: For blind text, can be removed after adding actual content 
 
+
+%%voor code snippets
+\usepackage{listings}
+\lstnewenvironment{swift}[1][]
+{
+    \lstset{
+        language=Swift,
+        basicstyle=\footnotesize\ttfamily,
+        keywordstyle=\bfseries\color{blue},
+        commentstyle=\color{green!40!black},
+        stringstyle=\color{orange},
+        showstringspaces=false,
+        columns=fullflexible,
+        keepspaces=true,
+        breaklines=true,
+        frame=single,
+        #1
+    }
+}
+{}
+
+
 %% Pictures to include in the text can be put in the graphics/ folder
 \graphicspath{{graphics/}}
 

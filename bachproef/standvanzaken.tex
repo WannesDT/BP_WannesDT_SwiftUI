@@ -15,4 +15,65 @@ Je verwijst bij elke bewering die je doet, vakterm die je introduceert, enz.\ na
 
 Let er ook op: het \texttt{cite}-commando voor de punt, dus binnen de zin. Je verwijst meteen naar een bron in de eerste zin die erop gebaseerd is, dus niet pas op het einde van een paragraaf.
 
-\lipsum[7-20]
+\section{Swift}
+
+\section{SwiftUI}
+
+\section{XCTest}
+
+\section{Annotations}
+\subsection{@propertyWrapper}
+\autocite{ApplePropertyWrapper} Een property wrapper voegt een scheidingslaag toe tussen de code die beheert hoe een property word opgeslagen en de code die een eigenschap definieert. Dit is interessant om te begrijpen omdat alle volgende annotaties property wrappers zijn.
+\begin{swift}[caption=Example property wrapper code, label=property_wrapper_example]
+    @propertyWrapper
+    struct TwelveOrLess {
+        private var number = 0
+        var wrappedValue: Int {
+            get { return number }
+            set { number = min(newValue, 12) }
+        }
+    }
+    
+    struct SmallRectangle {
+        @TwelveOrLess var height: Int
+        @TwelveOrLess var width: Int
+    }
+    
+    
+    var rectangle = SmallRectangle()
+    print(rectangle.height)
+    // Prints "0"
+    
+    
+    rectangle.height = 10
+    print(rectangle.height)
+    // Prints "10"
+    
+    
+    rectangle.height = 24
+    print(rectangle.height)
+    // Prints "12"
+\end{swift}
+
+
+\subsection{@State}
+\autocite{AppleState} State is een propertywrapper dat een waarde kan lezen en schrijven die word beheerd door SwiftUI. State word gebruikt voor de enige bron van de ``truth'' voor een gegeven value type dat opgeslagen wordt binnen de view hierarchy.
+\begin{swift}[caption=Example of @state code, label=state_example]
+    struct PlayButton: View {
+        @State private var isPlaying: Bool = false // Create the state.
+        
+        
+        var body: some View {
+            Button(isPlaying ? "Pause" : "Play") { // Read the state.
+                isPlaying.toggle() // Write the state.
+            }
+        }
+    }
+\end{swift}
+
+
+\subsection{@Binding}
+\subsection{@ObservableObject}
+\subsection{@StateObject}
+\subsection{@Observable}
+\subsection{@Environment}
