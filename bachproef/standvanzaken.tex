@@ -57,8 +57,9 @@ Let er ook op: het \texttt{cite}-commando voor de punt, dus binnen de zin. Je ve
 
 
 \subsection{@State}
-\autocite{AppleState} State is een propertywrapper dat een waarde kan lezen en schrijven die word beheerd door SwiftUI. State word gebruikt voor de enige bron van de ``truth'' voor een gegeven value type dat opgeslagen wordt binnen de view hierarchy.
-\begin{swift}[caption=Example of @state code, label=state_example]
+\autocite{AppleState} State is een propertywrapper dat een waarde kan lezen en schrijven die word beheerd door SwiftUI. State word gebruikt voor de enige bron van de ``truth''(waarheid) voor een gegeven value type dat opgeslagen wordt binnen de view hierarchy.
+
+\begin{swift}[caption=Example of @State code, label=state_example]
     struct PlayButton: View {
         @State private var isPlaying: Bool = false // Create the state.
         
@@ -73,6 +74,36 @@ Let er ook op: het \texttt{cite}-commando voor de punt, dus binnen de zin. Je ve
 
 
 \subsection{@Binding}
+\autocite{AppleBinding} Binding word gebruikt om een 2-way connection te leggen tussen een property dat data opslaat en een view dat data weergeeft. Een binding verbind een property met een bron van ``truth''(waarheid) in plaats van zelf de data op te slaan.
+
+\begin{swift}[caption=Example of @Binding code, label=binding_example]
+    struct PlayButton: View {
+        @Binding var isPlaying: Bool
+        
+        
+        var body: some View {
+            Button(isPlaying ? "Pause" : "Play") {
+                isPlaying.toggle()
+            }
+        }
+    }
+    
+    struct PlayerView: View {
+        var episode: Episode
+        @State private var isPlaying: Bool = false
+        
+        
+        var body: some View {
+            VStack {
+                Text(episode.title)
+                .foregroundStyle(isPlaying ? .primary : .secondary)
+                PlayButton(isPlaying: $isPlaying) // Pass a binding.
+            }
+        }
+    }
+\end{swift}
+
+
 \subsection{@ObservableObject}
 \subsection{@StateObject}
 \subsection{@Observable}
