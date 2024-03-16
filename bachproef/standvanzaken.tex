@@ -18,6 +18,7 @@ Let er ook op: het \texttt{cite}-commando voor de punt, dus binnen de zin. Je ve
 \section{Swift}
 
 \section{SwiftUI}
+\subsection{Views}
 
 \section{XCTest}
 
@@ -105,6 +106,129 @@ Let er ook op: het \texttt{cite}-commando voor de punt, dus binnen de zin. Je ve
 
 
 \subsection{@ObservableObject}
+\autocite{AppleObservableObject} Een ObservableObject is een object dat veranderingen in zijn staat kan detecteren en hier melding(objectWillChange) van kan maken aan geïnteresseerde partijen, meestal via het Observer-patroon. Dit is een belangrijk concept in het kader van het ontwikkelen van applicaties met een reactieve programmeerstijl.
+
+\subsubsection{Observer Pattern}
+\autocite{MediumDesignPatterns} Dit patroon is een gedragspatroon waarbij een object, dat de 'observable' of 'subject' wordt genoemd, een lijst met afhankelijkheden bijhoudt, ook wel 'observers' genoemd. Wanneer het observable object verandert, worden alle geïnteresseerde observers op de hoogte gesteld van deze verandering.
+
+\subsubsection{@Published}
+\autocite{ApplePublished} De eenvoudigste manier om een object als observable te maken, is door de @Published-property wrapper te gebruiken voor eigenschappen die je wilt observeren. Wanneer de waarde van een eigenschap die is gemarkeerd met @Published verandert, zal het observable object automatisch melding maken van deze verandering aan alle geabonneerde observers.
+
+\begin{swift}[caption=Example of implemented Observable Pattern, label=observable_example]
+class Contact: ObservableObject {
+    @Published var name: String
+    @Published var age: Int
+    
+    
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+    
+    
+    func haveBirthday() -> Int {
+        age += 1
+        return age
+    }
+}
+
+
+let john = Contact(name: "John Appleseed", age: 24)
+cancellable = john.objectWillChange
+.sink { _ in
+    print("(john.age) will change")
+}
+print(john.haveBirthday())
+// Prints "24 will change"
+// Prints "25"
+\end{swift}
+
 \subsection{@StateObject}
+StateObject is een property wrapper in SwiftUI, waarmee je een instantie van een observable object kunt maken en behouden gedurende de levensduur van een specifieke SwiftUI View. Dit is handig wanneer je een observable object wilt gebruiken om de staat van een weergave te beheren, maar je wilt niet dat deze wordt gedeeld tussen verschillende instanties van dezelfde weergave.
+
+\begin{swift}[caption=Example of StateObject, label=stateobject_example]
+class MyData: ObservableObject {
+    @Published var value: Int = 0
+}
+
+struct ContentView: View {
+    @StateObject var data = MyData()
+    
+    var body: some View {
+        VStack {
+            ChildView(data: data)
+            AnotherChildView(data: data)
+        }
+    }
+}
+
+struct ChildView: View {
+    @ObservedObject var data: MyData
+    
+    var body: some View {
+        VStack {
+            Text("Value in ChildView: (data.value)")
+            Button("Increment in ChildView") {
+                data.value += 1
+            }
+        }
+    }
+}
+struct AnotherChildView: View {
+    @ObservedObject var data: MyData
+    
+    var body: some View {
+        VStack {
+            Text("Value in AnotherChildView: (data.value)")
+            Button("Increment in AnotherChildView") {
+                data.value += 1
+            }
+        }
+    }
+}
+
+\end{swift}
+
 \subsection{@Observable}
+\autocite{AppleObservable} @Observable is een macro die gebruikt wordt in SwiftUI om het observer-patroon te implementeren. Dit patroon stelt een object in staat om een lijst van observers bij te houden en hen te notificeren over specifieke of algemene staatveranderingen. Deze macro is beschikbaar vanaf ios 17.0 en later. Deze macro is gemaakt om alle voorgaande macro's te vervangen.
+
+\begin{swift}[caption=Example of Observable, label=Observable_example]
+// ViewModel met @Observable macro
+@Observable class SimpleViewModel {
+    var text = "Hello World :)"
+}
+
+// SwiftUI View
+struct SimpleView: View {
+    @Environment(SimpleViewModel.self) var viewModel
+    
+    var body: some View {
+        Text(viewModel.text)
+    }
+}
+\end{swift}
+
+
 \subsection{@Environment}
+\autocite{AppleEnvironment} In SwiftUI biedt @Environment een mechanisme om waarden door te geven door de view-hiërarchie, zonder ze expliciet door te geven aan elke view als afzonderlijke eigenschappen. Het maakt gebruik van de omgeving van de View om gegevens te delen tussen Views in een hiërarchie. Dit is handig voor het doorgeven van gegevens die van toepassing zijn op de hele app of een deel ervan, zoals thema's, kleuren, taalinstellingen, enzovoort.
+
+
+\begin{swift}[caption=Example of Observable, label=Observable_example]
+struct ContentView: View {
+    @Environment(\.colorScheme) var colorScheme
+    
+    var body: some View {
+        VStack {
+            Text("Current color scheme is (colorScheme)")
+            ChildView()
+        }
+    }
+}
+
+struct ChildView: View {
+    var body: some View {
+        Text("This is a child view")
+    }
+}
+\end{swift}
+
