@@ -6,21 +6,100 @@
 % bijzonder aan wat de link is met het vorige en volgende hoofdstuk.
 
 % Pas na deze inleidende paragraaf komt de eerste sectiehoofding.
-
-Dit hoofdstuk bevat je literatuurstudie. De inhoud gaat verder op de inleiding, maar zal het onderwerp van de bachelorproef *diepgaand* uitspitten. De bedoeling is dat de lezer na lezing van dit hoofdstuk helemaal op de hoogte is van de huidige stand van zaken (state-of-the-art) in het onderzoeksdomein. Iemand die niet vertrouwd is met het onderwerp, weet nu voldoende om de rest van het verhaal te kunnen volgen, zonder dat die er nog andere informatie moet over opzoeken \autocite{Pollefliet2011}.
-
-Je verwijst bij elke bewering die je doet, vakterm die je introduceert, enz.\ naar je bronnen. In \LaTeX{} kan dat met het commando \texttt{$\backslash${textcite\{\}}} of \texttt{$\backslash${autocite\{\}}}. Als argument van het commando geef je de ``sleutel'' van een ``record'' in een bibliografische databank in het Bib\LaTeX{}-formaat (een tekstbestand). Als je expliciet naar de auteur verwijst in de zin (narratieve referentie), gebruik je \texttt{$\backslash${}textcite\{\}}. Soms is de auteursnaam niet expliciet een onderdeel van de zin, dan gebruik je \texttt{$\backslash${}autocite\{\}} (referentie tussen haakjes). Dit gebruik je bv.~bij een citaat, of om in het bijschrift van een overgenomen afbeelding, broncode, tabel, enz. te verwijzen naar de bron. In de volgende paragraaf een voorbeeld van elk.
-
-\textcite{Knuth1998} schreef een van de standaardwerken over sorteer- en zoekalgoritmen. Experten zijn het erover eens dat cloud computing een interessante opportuniteit vormen, zowel voor gebruikers als voor dienstverleners op vlak van informatietechnologie~\autocite{Creeger2009}.
-
-Let er ook op: het \texttt{cite}-commando voor de punt, dus binnen de zin. Je verwijst meteen naar een bron in de eerste zin die erop gebaseerd is, dus niet pas op het einde van een paragraaf.
+In dit hoofdstuk zullen we de basisprincipes van Swift en SwiftUI verkennen, samen met enkele essentiële design patterns en annotaties die vaak worden gebruikt in SwiftUI-ontwikkeling. De annotaties waar we het over gaan hebben zijn de annotaties die we gaan gebruiken om Data door te geven in SwiftUI. Na dit hoofdstuk heeft u genoeg kennis en inzicht om de rest van deze proef te begrijpen.
 
 \section{Swift}
+\autocite{WikiSwift} Swift is een programmeertaal ontwikkeld door Apple voor de besturingsystemen iOS en OS X. De taal is gebaseerd op Objective-C die eerder werd gebruikt voor het ontwikkelen van applicaties. Swift werd in 2014 aangekondigt tijdens de jaarlijkse ontwikkelaarsconferentie WWDC 2014, samen met OS X Yosemite, iOS 8 en diverse SDK's. Dit is de basis programmeertaal die we doorheen deze proef gaan gebruiken.
+\subsubsection{Geschiedenis}
+De ontwikkeling van swift is van start gegaan in 2010 door programmeur Chris Lattner. Swift voegde verschillende concepten samen uit andere programmeertalen zoals: Objective-C, Rust, Haskell, Python, C\#, CLU, en vele anderen. De eerste publieke Swift app is op 2 juni 2014 geschreven.
 
+Een handleiding van 500 pagina's werd ook tijdens de WWDC beschikbaar gesteld in de iBooks Store en op de website van Apple.
 \section{SwiftUI}
-\subsection{Views}
+\autocite{AppleSwiftUI} SwiftUI is een door Apple ontwikkeld framework voor het bouwen van gebruikersinterfaces voor iOS, macOS, watchOS en tvOS, met behulp van de programmeertaal Swift. Het is ontworpen om de ontwikkeling van gebruikersinterfaces te vereenvoudigen door middel van een declaratieve syntax en een reeks krachtige tools en functies.
 
-\section{XCTest}
+Met SwiftUI kun je gebruikersinterfaces bouwen door middel van een reeks van herbruikbare en aanpasbare Views, waardoor je complexe UI-structuren kunt maken met minimale code. Het framework maakt gebruik van een state-driven architectuur, wat betekent dat de UI automatisch wordt bijgewerkt wanneer de toestand van de app verandert. In deze proef gaan we SwiftUI Views gebruiken om data aan mee te geven om zo performantie te tracken.
+
+\subsection{Views}
+\autocite{AppleSwiftViews} Views vormen de bouwstenen van elke SwiftUI-gebruikersinterface. Ze definiëren hoe content wordt weergegeven en gereageerd wordt op gebruikersinteracties. Views kunnen zowel elementaire interface-elementen (zoals tekst, knoppen en afbeeldingen) als complexere composities van deze elementen bevatten.
+
+\section{Design Patterns}
+Design patterns zijn oplossingen voor veelvoorkomende ontwerpproblemen in softwareontwikkeling. Ze bieden gestandaardiseerde en herbruikbare oplossingen voor problemen die zich vaak voordoen tijdens het ontwerpen van software. In Swift met SwiftUI zijn verschillende design patterns van toepassing om de ontwikkeling van robuuste en onderhoudbare apps te vergemakkelijken.
+
+Design Patterns zijn belangerijk voor:
+\begin{itemize}
+    \item {\textbf{Herbruikbaarheid:} Design patterns bevorderen herbruikbaarheid van code.}
+    \item {\textbf{Onderhoudbaarheid:} Ze maken de code gemakkelijker te begrijpen en te onderhouden.}
+    \item {\textbf{Schaalbaarheid:} Door het gebruik van design patterns wordt het gemakkelijker om de app uit te breiden en nieuwe functies toe te voegen.}
+    \item {\textbf{Testbaarheid:} Code die gebruikmaakt van design patterns is vaak gemakkelijker te testen vanwege de modulaire structuur.}
+\end{itemize}
+\autocite{MediumPatterns} Enkele belangerijke Design Patterns in Swift met SwiftUI zijn MVVM, MVC, MVP en VIPER.
+
+\subsection{Model-View-ViewModel (MVVM)}
+\autocite{MediumMVVM} MVVM is een design pattern dat veel wordt gebruikt in SwiftUI voor het scheiden van de logica van de gebruikersinterface van de onderliggende gegevens. Het bestaat uit drie hoofdcomponenten:
+\begin{itemize}
+    \item {\textbf{Model:} Het model bevat de gegevens van de app en de logica voor het manipuleren van die gegevens. Dit is waar de kernfunctionaliteit van de app zich bevindt.}
+    \item {\textbf{View:} De view is verantwoordelijk voor het weergeven van de gebruikersinterface en het reageren op gebruikersinteracties. In SwiftUI worden views vaak passief gehouden en bevatten ze minimale logica.}
+    \item {\textbf{ViewModel:} De viewmodel fungeert als een tussenliggende laag tussen het model en de view. Het voorziet de view van de gegevens die nodig zijn om te worden weergegeven en reageert op acties van de gebruiker. Het transformeert ook de gegevens van het model naar een vorm die gemakkelijk kan worden weergegeven in de view.}
+\end{itemize}
+De voordelen van MVVM zijn:
+\begin{itemize}
+    \item {\textbf{Scheiding van verantwoordelijkheden:} MVVM helpt bij het scheiden van de logica van de gebruikersinterface van de onderliggende gegevens, waardoor de code gemakkelijker te begrijpen en te onderhouden is. Dit zorgt ook voor een eenvoudigere uitbreidbaarheid en herbruikbaarheid van de code.}
+    \item {\textbf{Testbaarheid:} Omdat de logica van de gebruikersinterface wordt gescheiden van de gegevenslogica, zijn de componenten gemakkelijker afzonderlijk te testen.}
+\end{itemize}
+
+\subsection{VIPER}
+\autocite{MediumVIPER} VIPER is een design pattern dat staat voor View, Interactor, Presenter, Entity, en Router. Het is een architectureel patroon dat is ontworpen om de code van een app in verschillende lagen te verdelen om de onderhoudbaarheid en testbaarheid te verbeteren. Hier is een overzicht van de componenten:
+
+\begin{itemize}
+    \item {\textbf{View:} De view is verantwoordelijk voor het weergeven van de gebruikersinterface en het reageren op gebruikersinteracties, vergelijkbaar met MVVM.}
+    \item {\textbf{Interactor:} De interactorcomponent bevat de businesslogica van de app. Het is verantwoordelijk voor het ophalen en verwerken van gegevens van externe bronnen, zoals een database of een netwerk.}
+    \item {\textbf{Presenter:} De presenter fungeert als een tussenliggende laag tussen de interactor en de view. Het is verantwoordelijk voor het formatteren van de gegevens die zijn verkregen van de interactor en deze door te geven aan de view voor weergave.}
+    \item {\textbf{Entity:} De entity bevat de gegevensmodellen van de app. Het vertegenwoordigt de entiteiten die worden gebruikt in de applicatie, zoals gebruikers, items, of andere objecten.}
+    \item {\textbf{Router:} De router is verantwoordelijk voor het beheren van de navigatie binnen de app. Het bepaalt welke schermen moeten worden weergegeven en hoe deze moeten worden genavigeerd.}
+\end{itemize}
+Voordelen van VIPER zijn:
+\begin{itemize}
+    \item {\textbf{Schaalbaarheid:} Door de code in verschillende lagen te verdelen, maakt VIPER het gemakkelijker om de app uit te breiden en nieuwe functies toe te voegen.}
+    \item {\textbf{Testbaarheid:} Elk onderdeel van VIPER kan afzonderlijk worden getest, waardoor het gemakkelijker wordt om bugs op te sporen en te repareren.}
+\end{itemize}
+
+\section{XCode Performance Trackers}
+
+In deze proef gericht op het vergelijken van de performantie, rendering en lifescycles van views, zijn Xcode Profiler, Xcode Instruments en XCTest Metrics van onschatbare waarde. Xcode Profiler biedt een basisprofiel van views door CPU-, geheugen- en netwerkactiviteit te meten. Xcode Instruments gaat dieper met gedetailleerde analyses van CPU-, geheugen- en grafische prestaties, en kan rendercycli traceren. XCTest Metrics biedt automatische prestatiegegevensverzameling tijdens tests, wat helpt bij het identificeren van prestatieproblemen in views. Het integreren van bevindingen uit deze tools biedt een holistisch beeld van de view-prestaties, waardoor iteratieve optimalisatie mogelijk is voor een verbeterde gebruikerservaring en algehele app-prestaties.
+
+\subsection{XCode Profiler}
+Xcode Profiler is een krachtige tool die wordt geleverd als onderdeel van Apple's Xcode-ontwikkelomgeving. Het stelt ontwikkelaars in staat om de prestaties van hun iOS-, macOS-, watchOS- en tvOS-apps te meten en te optimaliseren. De profiler biedt inzicht in de runtime-gedrag van de app, inclusief CPU-gebruik, geheugenverbruik, netwerkactiviteit en meer. Met deze tool kunnen we in deze proef de performantie op basis van CPU-gebruik, geheugenverbruik, enz. gaan meten. 
+\subsubsection{CPU-profiler}
+Hiermee kan men het CPU-gebruik van een app analyseren. Men kan zien welke delen van de code veel CPU-tijd verbruiken en mogelijk optimalisaties doorvoeren om de prestaties te verbeteren.
+\subsubsection{Geheugen-profiler}
+Hiermee kan men het geheugenverbruik van een app analyseren. Men kan zien hoeveel geheugen de app gebruikt en hoe dit zich verhoudt tot verschillende delen van de code. Dit kan helpen bij het identificeren van geheugenlekken en het optimaliseren van de geheugenprestaties.
+\subsubsection{Netwerkprofiler}
+Hiermee kan men de netwerkactiviteit van de app analyseren. Men kan zien welke netwerkverzoeken de app maakt en hoe lang deze duren. Dit kan helpen bij het identificeren van trage netwerkverbindingen en het optimaliseren van de netwerkprestaties.
+\subsubsection{Instruments}
+Xcode Profiler maakt gebruik van Instruments, een krachtige tool voor het analyseren van de prestaties van een app. Instruments biedt verschillende instrumenten voor het meten van CPU-, geheugen- en netwerkprestaties, evenals voor het profileren van grafische en energiegebruik.
+
+
+\subsection{Xcode Instruments}
+Xcode Instruments is een krachtige tool die wordt geleverd als onderdeel van Apple's Xcode-ontwikkelomgeving. Het stelt ontwikkelaars in staat om diepgaande analyses uit te voeren van de prestaties en het gedrag van hun iOS-, macOS-, watchOS- en tvOS-apps. Met Instruments kunnen ontwikkelaars problemen met prestaties, geheugen, energieverbruik en meer opsporen en diagnosticeren. 
+
+\subsubsection{Realtime monitoring}
+Instruments biedt realtime monitoring van de prestaties van een app, waardoor men direct feedback krijgt over het gedrag van een app tijdens het gebruik. Dit stelt ontwikkelaars in staat om problemen snel op te sporen en te diagnosticeren terwijl ze optreden.
+\subsubsection{Diepgaande analyse}
+Met Instruments kunnen ontwikkelaars diepgaande analyses uitvoeren van de prestaties van hun app. Dit omvat gedetailleerde grafieken, tabellen en visuele hulpmiddelen om inzicht te krijgen in CPU-gebruik, geheugenverbruik, netwerkactiviteit, energieverbruik en meer.
+\subsubsection{Tracing en Profiling}
+Instruments ondersteunt zowel tracing als profiling van apps. Met tracing kan men het gedrag van een app volgen en analyseren gedurende een bepaalde periode, terwijl profiling men in staat stelt om specifieke aspecten van de prestaties van een app te meten en te optimaliseren.
+
+\subsection{XCTest (Metrics)}
+XCTest is een framework dat wordt gebruikt voor het schrijven en uitvoeren van tests in Swift- en Objective-C-gebaseerde applicaties voor iOS, macOS, watchOS en tvOS. Naast de standaard functionaliteit voor het schrijven van tests biedt XCTest ook XCTest Metrics, een functie die ontwikkelaars in staat stelt om verschillende prestatiegerelateerde metingen te verzamelen tijdens het uitvoeren van tests.
+
+\subsubsection{Prestatiemetingen}
+XCTest Metrics biedt verschillende metingen voor het evalueren van de prestaties van een app tijdens het uitvoeren van tests. Dit omvat metingen zoals CPU-gebruik, geheugenverbruik, netwerkactiviteit, energieverbruik en meer.
+\subsubsection{Ingebouwde instrumenten}
+XCTest Metrics maakt gebruik van de ingebouwde Instruments van Xcode om de prestaties van een app te meten. Dit stelt ontwikkelaars in staat om diepgaande analyses uit te voeren van de prestaties van hun app en om potentiële prestatieproblemen te identificeren.
+\subsubsection{Grafische Weergave}
+XCTest Metrics biedt een grafische weergave van de verzamelde prestatiegegevens, waardoor ontwikkelaars snel inzicht krijgen in de prestaties van hun app tijdens het uitvoeren van tests. Dit omvat grafieken, tabellen en andere visuele hulpmiddelen om trends en patronen te identificeren.
+\subsubsection{Automatische Metingen}
+XCTest Metrics voert automatisch metingen uit tijdens het uitvoeren van tests, waardoor ontwikkelaars zich kunnen concentreren op het schrijven van tests zonder zich zorgen te hoeven maken over het handmatig meten van prestaties. Dit maakt het gemakkelijker om consistente en betrouwbare metingen te verkrijgen.
 
 \section{Annotations}
 \subsection{@propertyWrapper}
