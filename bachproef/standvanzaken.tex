@@ -10,17 +10,46 @@ In dit hoofdstuk zullen we de basisprincipes van Swift en SwiftUI verkennen, sam
 
 \section{Swift}
 \autocite{WikiSwift} Swift is een programmeertaal ontwikkeld door Apple voor de besturingsystemen iOS en OS X. De taal is gebaseerd op Objective-C die eerder werd gebruikt voor het ontwikkelen van applicaties. Swift werd in 2014 aangekondigt tijdens de jaarlijkse ontwikkelaarsconferentie WWDC 2014, samen met OS X Yosemite, iOS 8 en diverse SDK's. Dit is de basis programmeertaal die we doorheen deze proef gaan gebruiken.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{swiftbird} 
+    \caption{Het swift logo}
+    \label{fig:swift}
+\end{figure}
 \subsubsection{Geschiedenis}
 De ontwikkeling van swift is van start gegaan in 2010 door programmeur Chris Lattner. Swift voegde verschillende concepten samen uit andere programmeertalen zoals: Objective-C, Rust, Haskell, Python, C\#, CLU, en vele anderen. De eerste publieke Swift app is op 2 juni 2014 geschreven.
 
 Een handleiding van 500 pagina's werd ook tijdens de WWDC beschikbaar gesteld in de iBooks Store en op de website van Apple.
 \section{SwiftUI}
 \autocite{AppleSwiftUI} SwiftUI is een door Apple ontwikkeld framework voor het bouwen van gebruikersinterfaces voor iOS, macOS, watchOS en tvOS, met behulp van de programmeertaal Swift. Het is ontworpen om de ontwikkeling van gebruikersinterfaces te vereenvoudigen door middel van een declaratieve syntax en een reeks krachtige tools en functies.
-
+\begin{wrapfigure}{r}{0.3\textwidth}
+    \includegraphics[width=0.3\textwidth]{swiftuibird} 
+    \caption{Het swiftUI logo}
+    \label{fig:swiftUI}
+\end{wrapfigure}
 Met SwiftUI kun je gebruikersinterfaces bouwen door middel van een reeks van herbruikbare en aanpasbare Views, waardoor je complexe UI-structuren kunt maken met minimale code. Het framework maakt gebruik van een state-driven architectuur, wat betekent dat de UI automatisch wordt bijgewerkt wanneer de toestand van de app verandert. In deze proef gaan we SwiftUI Views gebruiken om data aan mee te geven om zo performantie te tracken.
 
 \subsection{Views}
 \autocite{AppleSwiftViews} Views vormen de bouwstenen van elke SwiftUI-gebruikersinterface. Ze definiëren hoe content wordt weergegeven en gereageerd wordt op gebruikersinteracties. Views kunnen zowel elementaire interface-elementen (zoals tekst, knoppen en afbeeldingen) als complexere composities van deze elementen bevatten.
+
+\begin{figure}[h]
+    \begin{minipage}{0.5\textwidth}
+        \begin{swift}[caption=Example of a view, label=view_example]
+           struct MyView: View {
+               var body: some View {
+                   Text("Hello, World!")
+               }
+           }
+        \end{swift}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[height=130pt]{helloworldview}
+        \caption{Example of a view}
+        \label{fig:viewex1}
+    \end{minipage}
+\end{figure}
 
 \section{Design Patterns}
 Design patterns zijn oplossingen voor veelvoorkomende ontwerpproblemen in softwareontwikkeling. Ze bieden gestandaardiseerde en herbruikbare oplossingen voor problemen die zich vaak voordoen tijdens het ontwerpen van software. In Swift met SwiftUI zijn verschillende design patterns van toepassing om de ontwikkeling van robuuste en onderhoudbare apps te vergemakkelijken.
@@ -36,6 +65,12 @@ Design Patterns zijn belangerijk voor:
 
 \subsection{Model-View-ViewModel (MVVM)}
 \autocite{MediumMVVM} MVVM is een design pattern dat veel wordt gebruikt in SwiftUI voor het scheiden van de logica van de gebruikersinterface van de onderliggende gegevens. Het bestaat uit drie hoofdcomponenten:
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{MVVMPattern} 
+    \caption{MVVM}
+    \label{fig:mvvm}
+\end{figure}
 \begin{itemize}
     \item {\textbf{Model:} Het model bevat de gegevens van de app en de logica voor het manipuleren van die gegevens. Dit is waar de kernfunctionaliteit van de app zich bevindt.}
     \item {\textbf{View:} De view is verantwoordelijk voor het weergeven van de gebruikersinterface en het reageren op gebruikersinteracties. In SwiftUI worden views vaak passief gehouden en bevatten ze minimale logica.}
@@ -49,6 +84,12 @@ De voordelen van MVVM zijn:
 
 \subsection{VIPER}
 \autocite{MediumVIPER} VIPER is een design pattern dat staat voor View, Interactor, Presenter, Entity, en Router. Het is een architectureel patroon dat is ontworpen om de code van een app in verschillende lagen te verdelen om de onderhoudbaarheid en testbaarheid te verbeteren. Hier is een overzicht van de componenten:
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{viper} 
+    \caption{viper}
+    \label{fig:viper}
+\end{figure}
 
 \begin{itemize}
     \item {\textbf{View:} De view is verantwoordelijk voor het weergeven van de gebruikersinterface en het reageren op gebruikersinteracties, vergelijkbaar met MVVM.}
