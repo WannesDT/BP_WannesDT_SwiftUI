@@ -25,6 +25,37 @@
 %%
 %% Maak voor elke fase (behalve het literatuuronderzoek) een NIEUW HOOFDSTUK aan
 %% en geef het een gepaste titel.
+\section{long-list}
+\subsection{dataoverdrachtsmethoden}
+Deze opties bieden verschillende benaderingen om gegevens door te geven aan SwiftUI-views.
+\begin{itemize}
+    \item {\textbf{State properties:} In SwiftUI kunnen gegevens door middel van @State-eigenschappen aan views worden doorgegeven. Deze optie omvat verschillende manieren waarop state-eigenschappen kunnen worden gebruikt om views dynamisch te updaten.}
+    \item {\textbf{Binding properties:} @Binding-eigenschappen bieden een manier om gegevens tussen een parent view en een child view te synchroniseren, zodat wijzigingen in een child view ook de parent view beïnvloeden.}
+    \item {\textbf{Observed objects:} Met @ObservedObject kunnen views gegevens volgen van een modelobject dat conform ObservableObject is. Dit maakt het mogelijk om complexere data-infrastructuren op te bouwen.}
+    \item {\textbf{Environment objects:} @EnvironmentObject maakt het mogelijk om een object door te geven aan verschillende views in de SwiftUI-hiërarchie, zodat dezelfde gegevens gedeeld kunnen worden zonder dat ze expliciet door elke view moeten worden doorgegeven.}s
+    \item {\textbf{State objects:} @StateObject is een eigenschap die wordt gebruikt om de levensduur van een object dat conform ObservableObject is, in een SwiftUI-view te beheren. Dit wordt vaak gebruikt om een modelobject te creëren dat het hele leven van de view meegaat.}
+    \item {\textbf{View models:} Een view model wordt vaak gebruikt in de Model-View-ViewModel (MVVM) architectuur. Deze optie omvat het gebruik van een view model om gegevens en logica te beheren, en deze vervolgens aan de SwiftUI-views door te geven.}
+    \item {\textbf{Data publishers:} In SwiftUI kunnen Combine-publishers worden gebruikt om gegevensstromen te beheren en automatisch aan views door te geven. Dit maakt het mogelijk om data-reactief gedrag te implementeren, waarbij views automatisch worden bijgewerkt wanneer de gegevens wijzigen.}
+\end{itemize}
+\subsection{testtools}
+Deze lijst biedt verschillende testtools die kunnen worden gebruikt om SwiftUI-applicaties te testen en te profileren.
+\begin{itemize}
+    \item {\textbf{Xcode Profiler:} Xcode bevat ingebouwde profileringsinstrumenten waarmee je de prestaties van je applicatie kunt analyseren, zoals CPU- en geheugengebruik. Je kunt specifieke gebieden van je code profileren en optimalisaties uitvoeren om de efficiëntie te verbeteren.}
+    \item {\textbf{XCTest:} XCTest is de standaard testframework in Xcode en wordt gebruikt voor het schrijven van eenheidstests en UI-tests voor SwiftUI-applicaties. Je kunt hiermee testcases definiëren en asserties uitvoeren om de correctheid van je code te waarborgen.}
+    \item {\textbf{Instruments:} Instruments is een uitgebreide set van profilerings- en monitoringtools die beschikbaar zijn in Xcode. Je kunt hiermee verschillende aspecten van je applicatie analyseren, zoals netwerkverkeer, batterijverbruik, en geheugenlekken.}
+    \item {\textbf{AppCode:} AppCode is een IDE voor iOS-ontwikkeling die ondersteuning biedt voor het schrijven en uitvoeren van tests in SwiftUI-applicaties. Het bevat ook tools voor code-analyse, debugging, en profilering.}
+    \item {\textbf{View Inspector:} View Inspector is een tool waarmee je de compositie van SwiftUI-views kunt analyseren en inspecteren. Dit kan nuttig zijn voor het debuggen van complexe view-hiërarchieën.}
+    \item {\textbf{KIF (Keep It Functional):} KIF is een testframework waarmee je functionele tests kunt schrijven voor iOS-applicaties, inclusief SwiftUI-applicaties. Het stelt je in staat om tests te schrijven in een leesbare, natuurlijke taal.}
+    \item {\textbf{Snapshot testing:} Snapshot testing is een techniek waarbij je de weergave van een view opslaat en vergelijkt met een eerdere "snapshot" om te controleren of de weergave ongewijzigd is gebleven. Er zijn verschillende tools beschikbaar voor het uitvoeren van snapshot-tests in SwiftUI, zoals SnapshotTesting.}
+    \item {\textbf{Quick and Nimble:} Quick is een testframework dat gericht is op het schrijven van gestructureerde en leesbare tests. Nimble is een bijbehorende assertiebibliotheek die expressieve asserties biedt om testcases eenvoudiger te maken.}
+\end{itemize}
+\section{testopstelling}
+Een testomgeving is gecreëerd door SwiftUI-views te ontwikkelen voor elke methode van dataoverdracht. Elke view heeft een groot databestand ontvangen, dat binnen de view is aangepast om nieuwe rendercyclussen te activeren. Dit proces is herhaald voor elke overdrachtsmethode en het gemiddelde geheugengebruik, CPU-gebruik en laadtijd van deze views is berekend. Deze gegevens zijn waargenomen met behulp van de eerder genoemde tools. Door de verzamelde gegevens te vergelijken, is een conclusie getrokken over de meest efficiënte methode. 
 
-\lipsum[21-25]
+\section{analyse van resultaten}
+Tijdens de proef zijn gegevens verzameld over het aantal keren dat SwiftUI-views werden ververst tijdens dataoverdracht en de prestaties van verschillende overdrachtsmethoden. Deze resultaten zijn geanalyseerd om inzicht te krijgen in de efficiëntie en impact van elke methode op de applicatie.
+
+Het gemiddelde geheugengebruik, CPU-gebruik en de laadtijd van de views zijn berekend voor elke methode van dataoverdracht. De analyse van deze gegevens heeft geholpen om patronen en trends in de prestaties van de verschillende methoden te identificeren. Daarnaast zijn de frequentie en duur van rendercyclussen onderzocht om mogelijke knelpunten in de code te achterhalen.
+
+Op basis van deze analyse zijn aanbevelingen gedaan voor de meest efficiënte dataoverdrachtsmethoden voor SwiftUI-views. Dit biedt waardevolle inzichten voor de optimalisatie van SwiftUI-applicaties en het verbeteren van de algehele gebruikerservaring. De resultaten vormen de basis voor verdere ontwikkeling en optimalisatie van SwiftUI-applicaties in toekomstige projecten.
 
