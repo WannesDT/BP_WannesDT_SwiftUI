@@ -5,22 +5,22 @@
 \chapter{\IfLanguageName{dutch}{Inleiding}{Introduction}}%
 \label{ch:inleiding}
 
-SwiftUI is een modern framework van Apple dat een nieuwe benadering biedt voor het ontwerpen en bouwen van user interfaces voor iOS-, macOS- en andere platforms. Het maakt gebruik van een declaratieve programmeerstijl en combineert een intuïtieve syntax met krachtige tools, waardoor ontwikkelaars snel aantrekkelijke en responsieve apps kunnen maken. Door de groeiende populariteit van SwiftUI en het belang van efficiënte dataoverdracht in apps, is er behoefte aan diepgaand onderzoek naar de impact van rendercyclussen op performance, rendering en lifecycles.
+SwiftUI is een modern framework van Apple dat een nieuwe aanpak biedt voor het ontwerpen en bouwen van gebruikersinterfaces voor iOS, macOS en andere platforms. Het maakt gebruik van een declaratieve programmeerstijl en combineert een intuïtieve syntaxis met krachtige tools, waarmee ontwikkelaars snel aantrekkelijke en responsieve apps kunnen maken. Met de groeiende populariteit van SwiftUI en het belang van efficiënte gegevensoverdracht in apps, is er behoefte aan diepgaand onderzoek naar de impact van rendercycli op prestaties, rendering en levenscycli.
 
-Dit onderzoek richt zich op het afbakenen van dit onderwerp door te onderzoeken hoe verschillende rendercyclussen in SwiftUI de prestaties van applicaties beïnvloeden. De efficiënte verwerking van dataoverdracht is cruciaal voor het leveren van een soepele gebruikerservaring, en daarom is het belangrijk om te begrijpen welke methoden het meest effectief zijn.
+Dit onderzoek richt zich op het afbakenen van dit onderwerp door te onderzoeken hoe verschillende overdrachtsmethoden in SwiftUI de prestaties van applicaties beïnvloeden. De efficiënte verwerking van gegevensoverdracht is cruciaal voor het leveren van een soepele gebruikerservaring, en daarom is het belangrijk om te begrijpen welke methoden het meest effectief zijn.
 
-De probleemstelling van dit onderzoek is het identificeren van de meest efficiënte methode voor dataoverdracht in SwiftUI-applicaties. De onderzoeksdoelstelling is om de impact van verschillende rendercyclussen op het geheugengebruik, CPU-gebruik en de laadtijd van SwiftUI-views te evalueren.
+De probleemstelling van dit onderzoek is het identificeren van de meest efficiënte methode voor gegevensoverdracht in SwiftUI-toepassingen. Het onderzoeksdoel is om de impact van verschillende rendercycli op het geheugengebruik, het CPU-gebruik en de laadtijd van SwiftUI-weergaven te evalueren.
 
 \section{\IfLanguageName{dutch}{Probleemstelling}{Problem Statement}}%
 \label{sec:probleemstelling}
 
 %
 %Uit je probleemstelling moet duidelijk zijn dat je onderzoek een meerwaarde heeft voor een concrete doelgroep. De doelgroep moet goed gedefinieerd en afgelijnd zijn. Doelgroepen als ``bedrijven,'' ``KMO's'', systeembeheerders, enz.~zijn nog te vaag. Als je een lijstje kan maken van de personen/organisaties die een meerwaarde zullen vinden in deze bachelorproef (dit is eigenlijk je steekproefkader), dan is dat een indicatie dat de doelgroep goed gedefinieerd is. Dit kan een enkel bedrijf zijn of zelfs één persoon (je co-promotor/opdrachtgever).
-De diversiteit aan beschikbare methoden voor
-het doorgeven van gegevens in SwiftUI roept vragen
-op over de optimale keuze voor specifieke gebruiksscenario’s.
+De diversiteit aan methoden die beschikbaar zijn
+voor het doorgeven van gegevens in SwiftUI roept vragen op
+over de optimale keuze voor specifieke gebruiksscenario's.
 Het gebrek aan diepgaande vergelijkende
-studies maakt het voor ontwikkelaars
+studies maakt het
 moeilijk om beslissingen te nemen bij het ontwerpen
 van efficiënte gebruikersinterfaces.
 
@@ -39,15 +39,14 @@ bij het ontwerpen van efficiënte gebruikersinterfaces?
 
 %Wat is het beoogde resultaat van je bachelorproef? Wat zijn de criteria voor succes? Beschrijf die zo concreet mogelijk. Gaat het bv.\ om een proof-of-concept, een prototype, een verslag met aanbevelingen, een vergelijkende studie, enz.
 
-Deze bachelorproef beoogt een diepgaand begrip
-van de rendercyclussen in SwiftUI en streeft
-ernaar om ontwikkelaars te voorzien van concrete
+Deze bachelorproef beoogt een diepgaand inzicht te geven
+van rendercycli in SwiftUI en streeft ernaar
+om ontwikkelaars te voorzien van concrete
 richtlijnen voor het optimaliseren van de prestaties
-en rendering van hun iOS-applicaties. Door
-een vergelijkende analyse van de verschillende
-dataoverdrachtsmethoden wordt beoogd heldere aanbevelingen te formuleren voor effectieve UIimplementaties
+en rendering van hun iOS-applicaties te optimaliseren. Door
+een vergelijkende analyse van verschillende
+methoden voor gegevensoverdracht worden duidelijke aanbevelingen gedaan voor effectieve UI-implementaties
 in SwiftUI.
-
 \section{\IfLanguageName{dutch}{Opzet van deze bachelorproef}{Structure of this bachelor thesis}}%
 \label{sec:opzet-bachelorproef}
 
