@@ -1,15 +1,12 @@
-\chapter{Resultaten}%
-In dit hoofdstuk word er dieper in de onderzoeksresultaten van dit onderzoek gedelft. Alle resultaten zijn verkregen door de applicatie te testen via een Iphone 15 pro, IOS 17.4. Alle testen zijn ook systematisch 10 tot 100 keer overlopen voor een correcter resultaat. 
-
-\label{ch:resultaten}
-
-
-\section{Ruwe resultaten}
+\chapter{Ruwe resultaten}
 In dit deel word er over alle ruwe resultaten gegaan. Elke afbeelding in dit hoofdstuk bevatten rechtstreekse resultaten vanuit de XCode Profiler. Bij deze afbeeldingen word er ook een kort woordje uitleg gedaan die de resultaten beschrijven.
 
-\subsection{test1: het testen op een lege view met grote dataoverdracht}
-\subsubsection{CPU verbruik}
 Voor het meten van het CPU verbruik tijdens het testen van verschillende methoden van data-overdracht is de Xcode profiling tool gebruikt met als template de CPU profiler. Met deze tool is gemeten hoeveel Mc(Mega cycles) de app vereist heeft van de CPU per type van data-overdracht. 
+
+Voor het meten van het aantal updates van verschillende view property's, view refreshes en totale CPU gebruik tijd tijdens het testen van verschillende methoden van data-overdracht is de Xcode profiling tool gebruikt met als template de Swift-UI profiler. 
+
+\section{test1: het testen op een lege view met grote dataoverdracht}
+\subsection{CPU verbruik}
 
 \paragraph{binding}
 Uit de tabel blijkt dat wanneer we een binding gebruiken om een groot object door te geven aan een view, en we maken een aanpassing in die view, dit ongeveer 14,08 mega cycli van de CPU vereist.
@@ -66,9 +63,7 @@ Uit de tabel blijkt dat het simpelweg doorgeven van een groot object aan een vie
 \end{figure}
 
 \newpage
-\subsubsection{Property updates}
-Voor het meten van het aantal updates van verschillende view property's tijdens het testen van verschillende methoden van data-overdracht is de Xcode profiling tool gebruikt met als template de Swift-UI profiler. Met deze tool is het aantal updates waargenomen dat elke datatype heeft gedaan na 101 keer een aanpassing door te voeren op een groot object en dat aan de overdrachtsmethode te koppelen. Na deze test uit te voeren kan opgemaakt worden dat Binding, ObservedObject en EnvironmentObject de property 202 keer hebben bijgewerkt, terwijl Observable en Environment de property slechts 101 keer hebben bijgewerkt. Dit verschil in updatefrequentie heeft invloed op de nauwkeurigheid en consistentie van de state van de applicatie, wat belangrijk is voor een responsieve gebruikerservaring. Echter, te vaak updaten kan leiden tot een hogere CPU-belasting en minder efficiënte prestaties.
-
+\subsection{Property updates}
 \paragraph{Snellere reactiesnelheid}
 Binding, ObservedObject en EnvironmentObject passen de property bij elke wijziging tweemaal aan, wat zorgt voor een snellere en consistenter bijgewerkte state. Deze methoden zijn geschikt voor applicaties waarbij real-time gegevensuitwisseling en een directe reactie op veranderingen essentieel zijn, zoals een chatapplicatie of een live-dashboard.
 
@@ -84,7 +79,7 @@ Daarentegen voeren Observable en Environment slechts één update per aanpassing
 \end{figure}
 
 \newpage
-\subsubsection{View refresh time}
+\subsection{View refresh time}
 Voor het meten van het gemiddelde view refresh times van SwiftUI Views tijdens het testen van verschillende methoden van data-overdracht is de Xcode profiling tool gebruikt met als template de SwiftUI profiler. De resultaten zijn waargenomen door een view aan te maken, de data door te geven volgens de methode die aangegeven is. Vervolgens de data updaten. Dit 100x herhalen voor elk type View. Ten slotte de gemiddelde tijdswaarden aflezen in de Xcode profiler.
 
 \begin{figure}[htbp]
@@ -94,21 +89,8 @@ Voor het meten van het gemiddelde view refresh times van SwiftUI Views tijdens h
     \label{fig:propertyRefreshDuration}
 \end{figure}
 
-\paragraph{Observable en EnvironmentObject}
-Deze methoden laten de snelste refresh times zien, met respectievelijk 2.52 en 2.69 microseconden. Dit laat zien dat deze benaderingen efficiënter zijn in het updaten van de UI wanneer de onderliggende data verandert. Dit kan worden toegeschreven aan de geoptimaliseerde manier waarop Observable en EnvironmentObject werken in SwiftUI, waarbij Observable expliciete meldingen van datawijzigingen mogelijk maakt, en EnvironmentObject een efficiënte, globale benadering biedt.
-
-\paragraph{Environment}
-De gemiddelde refresh time voor Environment (2.87 microseconden) ligt dicht bij die van Observable en EnvironmentObject. Dit duidt op een vergelijkbare efficiëntie, maar mogelijk iets minder optimaal vanwege de bredere reikwijdte van het gebruik van Environment in SwiftUI-applicaties.
-
-\paragraph{Binding}
-Met een gemiddelde refresh time van 3.23 microseconden is binding iets minder efficiënt dan Observable en EnvironmentObject. Dit kan worden verklaard door de manier waarop binding werkt, wat meer overhead kan introduceren in vergelijking met de directe datawijzigingen van Observable en EnvironmentObject.
-
-\paragraph{ObservedObject}
-Deze methode laat de traagste refresh time zien (4.22 microseconden) in vergelijking met de andere benaderingen. Dit kan duiden op een hoger overheadniveau of minder optimalisaties in de manier waarop ObservedObject wordt gebruikt voor het volgen en updaten van UI-componenten.
-
-
-\subsection{test2: Dataoverdracht in subview's}
-In dit hoofdstuk word de applicatie in de afbeelding hieronder gebruikt om de testen uit te voeren. Opgebouwd uit 1 VStack's die 10 HStack's bevat per HStack worden er 10 Tegels weergegeven. Elke tegel is zeer CPU heavy opgebouwd zodat de resultaten meer zichtbaar worden in de testen. Elke tile bevat ook een knop die een aanpassing van de testbare data gaat triggeren. In volgende afbeelding word de hierarchy afgebeeld. Voor elk type van dataoverdracht is er 10 keer op de button gedrukt voor het wijzigen van de view. Zo zijn de metingen tot stand gekomen. Alle ruwe resultaten die waargenomen zijn per datatype kan u terugvinden in onderstaande sectie's en afbeeldingen.
+\section{test2: Dataoverdracht in subview's}
+In dit hoofdstuk word de applicatie in de afbeelding hieronder gebruikt om de testen uit te voeren. Opgebouwd uit 1 VStack's die 10 HStack's bevat per HStack worden er 10 Tegels weergegeven. Elke tegel is zeer CPU heavy opgebouwd zodat de resultaten meer zichtbaar worden in de testen. Elke tile bevat ook een knop die een aanpassing van de testbare data gaat triggeren. In volgende afbeelding word de hierarchy afgebeeld. Voor elk type van dataoverdracht is er 10 keer op de button gedrukt voor het wijzigen van de view. Zo zijn de metingen tot stand gekomen. Alle ruwe resultaten die waargenomen zijn per datatype kan u terugvinden in onderstaande sectie's en afbeeldingen. 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.4\textwidth]{testapplication} 
@@ -121,8 +103,16 @@ In dit hoofdstuk word de applicatie in de afbeelding hieronder gebruikt om de te
     \caption{testapplicatie data hierarchy}
     \label{fig:testapplicationHierarchy}
 \end{figure}
+\subsection{Samengevat}
+Onderstaande tabel bevat alle samengevatte resultaten uit deze test.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{bptest1_insubview/resultstable} 
+    \caption{resultaten tabel}
+    \label{fig:resultatentabel1}
+\end{figure}
 % Binding test 1
-\subsubsection{Binding}
+\subsection{Binding}
 \paragraph{View ververs aantal en ververs tijd }
 %viewrefreshtime
 \begin{figure}[H]
@@ -154,7 +144,7 @@ In dit hoofdstuk word de applicatie in de afbeelding hieronder gebruikt om de te
 \end{figure}
 
 % Observable test 1
-\subsubsection{Observable}
+\subsection{Observable}
 \paragraph{View ververs aantal en ververs tijd}
 \begin{figure}[H]
     \centering
@@ -184,7 +174,7 @@ In dit hoofdstuk word de applicatie in de afbeelding hieronder gebruikt om de te
     \label{fig:cpuWeightObservable1}
 \end{figure}
 
-\subsubsection{ObservedObject}
+\subsection{ObservedObject}
 % ObservedObject test 1
 \paragraph{View ververs aantal en ververs tijd}
 \begin{figure}[H]
@@ -215,7 +205,7 @@ In dit hoofdstuk word de applicatie in de afbeelding hieronder gebruikt om de te
     \label{fig:cpuWeightObservedObject1}
 \end{figure}
 
-\subsubsection{EnvironmentObject}
+\subsection{EnvironmentObject}
 % EnvironmentObject test 1
 \paragraph{View ververs aantal en ververs tijd}
 \begin{figure}[H]
@@ -246,7 +236,7 @@ In dit hoofdstuk word de applicatie in de afbeelding hieronder gebruikt om de te
     \label{fig:cpuWeightEnvironmentObject1}
 \end{figure}
 
-\subsection{Test3: Dataoverdracht naar meerdere subview's met lazyLists}
+\section{Test3: Dataoverdracht naar meerdere subview's met lazyLists}
 % Binding test 2
 In dit hoofdstuk word de applicatie in de afbeelding hieronder gebruikt om de testen uit te voeren. Opgebouwd uit 1 LazyVStack's die 10 LazyHStack's bevat per HStack worden er 10 Tegels weergegeven. Elke tegel is zeer CPU heavy opgebouwd zodat de resultaten meer zichtbaar worden in de testen. Elke tile bevat ook een knop die een aanpassing van de testbare data gaat triggeren. In volgende afbeelding word de hierarchy afgebeeld. Voor elk type van dataoverdracht is er 10 keer op de button gedrukt voor het wijzigen van de view. Zo zijn de metingen tot stand gekomen. Alle ruwe resultaten die waargenomen zijn per datatype kan u terugvinden in onderstaande sectie's en afbeeldingen.
 \begin{figure}[htbp]
@@ -261,7 +251,7 @@ In dit hoofdstuk word de applicatie in de afbeelding hieronder gebruikt om de te
     \caption{testapplicatie data hierarchy}
     \label{fig:testapplicationHierarchy2}
 \end{figure}
-\subsubsection{Binding}
+\subsection{Binding}
 \paragraph{View ververs aantal en ververs tijd}
 \begin{figure}[H]
     \centering
@@ -292,7 +282,7 @@ In dit hoofdstuk word de applicatie in de afbeelding hieronder gebruikt om de te
 \end{figure}
 
 % Observable test 2
-\subsubsection{Observable}
+\subsection{Observable}
 \paragraph{View ververs aantal en ververs tijd}
 \begin{figure}[H]
     \centering
@@ -323,7 +313,7 @@ In dit hoofdstuk word de applicatie in de afbeelding hieronder gebruikt om de te
 \end{figure}
 
 % ObservedObject test 2
-\subsubsection{ObservedObject}
+\subsection{ObservedObject}
 \paragraph{View ververs aantal en ververs tijd}
 \begin{figure}[H]
     \centering
@@ -354,7 +344,7 @@ In dit hoofdstuk word de applicatie in de afbeelding hieronder gebruikt om de te
 \end{figure}
 
 % EnvironmentObject test 2
-\subsubsection{EnvironmentObject}
+\subsection{EnvironmentObject}
 \paragraph{View ververs aantal en ververs tijd}
 \begin{figure}[H]
     \centering
@@ -384,7 +374,7 @@ In dit hoofdstuk word de applicatie in de afbeelding hieronder gebruikt om de te
     \label{fig:cpuWeightEnvironmentObject2}
 \end{figure}
 
-\subsection{Test4: Dataoverdracht naar meerdere subview's}
+\section{Test4: Dataoverdracht naar meerdere subview's}
 % Binding test 3
 In dit hoofdstuk word de applicatie in de afbeelding hieronder gebruikt om de testen uit te voeren. Opgebouwd uit 1 VStack's die 10 HStack's bevat per HStack worden er 10 Tegels weergegeven. Elke tegel is zeer CPU heavy opgebouwd zodat de resultaten meer zichtbaar worden in de testen. Elke tile bevat ook een knop die een aanpassing van de testbare data gaat triggeren. In volgende afbeelding word de hierarchy afgebeeld. Voor elk type van dataoverdracht is er 10 keer op de button gedrukt voor het wijzigen van de view. Zo zijn de metingen tot stand gekomen. Alle ruwe resultaten die waargenomen zijn per datatype kan u terugvinden in onderstaande sectie's en afbeeldingen.
 \begin{figure}[htbp]
@@ -399,7 +389,7 @@ In dit hoofdstuk word de applicatie in de afbeelding hieronder gebruikt om de te
     \caption{testapplicatie data hierarchy}
     \label{fig:testapplicationHierarchy3}
 \end{figure}
-\subsubsection{Binding}
+\subsection{Binding}
 \paragraph{View ververs aantal en ververs tijd}
 \begin{figure}[H]
     \centering
@@ -430,7 +420,7 @@ In dit hoofdstuk word de applicatie in de afbeelding hieronder gebruikt om de te
 \end{figure}
 
 % Observable test 3
-\subsubsection{Observable}
+\subsection{Observable}
 \paragraph{View ververs aantal en ververs tijd}
 \begin{figure}[H]
     \centering
@@ -461,7 +451,7 @@ In dit hoofdstuk word de applicatie in de afbeelding hieronder gebruikt om de te
 \end{figure}
 
 % ObservedObject test 3
-\subsubsection{ObservedObject}
+\subsection{ObservedObject}
 \paragraph{View ververs aantal en ververs tijd}
 \begin{figure}[H]
     \centering
@@ -492,7 +482,7 @@ In dit hoofdstuk word de applicatie in de afbeelding hieronder gebruikt om de te
 \end{figure}
 
 % EnvironmentObject test 3
-\subsubsection{EnvironmentObject}
+\subsection{EnvironmentObject}
 \paragraph{View ververs aantal en ververs tijd}
 \begin{figure}[H]
     \centering
@@ -521,3 +511,8 @@ In dit hoofdstuk word de applicatie in de afbeelding hieronder gebruikt om de te
     \caption{test4: De totale last van het opnieuw toewijzen van property's op de cpu bij het gebruik van EnvironmentObject's}
     \label{fig:cpuWeightEnvironmentObject3}
 \end{figure}
+
+\chapter{Resultaten}%
+In dit hoofdstuk word er dieper in de onderzoeksresultaten van dit onderzoek gedelft. Alle resultaten zijn verkregen door de applicatie te testen via een Iphone 15 pro, IOS 17.4. Alle testen zijn ook systematisch 10 tot 100 keer overlopen voor een correcter resultaat. 
+
+
