@@ -10,9 +10,10 @@
 % - If you write your thesis in English (remark: only possible after getting
 %   explicit approval!), remove the option "dutch," or replace with "english".
 
-\usepackage{lipsum} % TODO remove this: For blind text, can be removed after adding actual content 
-
-
+\usepackage{array}
+\usepackage{geometry}
+\usepackage{tabularx}
+\usepackage{colortbl}
 %%voor code snippets
 \usepackage{listings}
 \lstnewenvironment{swift}[1][]
@@ -190,6 +191,8 @@ geïnformeerde beslissingen kunnen nemen bij het ontwerpen van responsieve en pe
 
 % Verwijzing naar het bestand met de inhoud van het onderzoeksvoorstel
 \input{../voorstel/voorstel-inhoud}
+
+\input{bijlagen}
 
 %%---------- Andere bijlagen --------------------------------------------------
 % TODO: Voeg hier eventuele andere bijlagen toe. Bv. als je deze BP voor de

@@ -9,8 +9,8 @@
 In dit hoofdstuk zullen we de basisprincipes van Swift en SwiftUI verkennen, samen met enkele essentiële design patterns en annotaties die vaak worden gebruikt in SwiftUI-ontwikkeling. De annotaties waar we het over gaan hebben zijn de annotaties die we gaan gebruiken om Data door te geven in SwiftUI. Na dit hoofdstuk heeft u genoeg kennis en inzicht om de rest van deze proef te begrijpen.
 
 \section{Swift}
-\autocite{WikiSwift} Swift is een programmeertaal ontwikkeld door Apple voor de besturingsystemen iOS en OS X. De taal is gebaseerd op Objective-C die eerder werd gebruikt voor het ontwikkelen van applicaties. Swift werd in 2014 aangekondigt tijdens de jaarlijkse ontwikkelaarsconferentie WWDC 2014, samen met OS X Yosemite, iOS 8 en diverse SDK's. Dit is de basis programmeertaal die we doorheen deze proef gaan gebruiken.
-\begin{figure}[htbp]
+\autocite{WikiSwift} Swift is een programmeertaal ontwikkeld door Apple primair voor de besturingsystemen iOS en OS X maar ook voor iPadOS, tvOS, en meerdere platformen van Apple. De taal is gebaseerd op Objective-C die eerder werd gebruikt voor het ontwikkelen van applicaties. Swift werd in 2014 aangekondigt tijdens de jaarlijkse ontwikkelaarsconferentie WWDC 2014, samen met OS X Yosemite, iOS 8 en diverse SDK's. Dit is de basis programmeertaal die we doorheen deze proef gaan gebruiken.
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{swiftbird} 
     \caption{Het swift logo}
@@ -21,13 +21,14 @@ De ontwikkeling van swift is van start gegaan in 2010 door programmeur Chris Lat
 
 Een handleiding van 500 pagina's werd ook tijdens de WWDC beschikbaar gesteld in de iBooks Store en op de website van Apple.
 \section{SwiftUI}
-\autocite{AppleSwiftUI} SwiftUI is een door Apple ontwikkeld framework voor het bouwen van gebruikersinterfaces voor iOS, macOS, watchOS en tvOS, met behulp van de programmeertaal Swift. Het is ontworpen om de ontwikkeling van gebruikersinterfaces te vereenvoudigen door middel van een declaratieve syntax en een reeks krachtige tools en functies.
+\autocite{AppleSwiftUI} SwiftUI is een door Apple ontwikkeld framework voor het bouwen van gebruikersinterfaces voor iOS, macOS, watchOS en tvOS, met behulp van de programmeertaal Swift. Het is ontworpen om de ontwikkeling van gebruikersinterfaces te vereenvoudigen door middel van een declaratieve syntax en een reeks krachtige tools en functies. 
 \begin{wrapfigure}{r}{0.3\textwidth}
     \includegraphics[width=0.3\textwidth]{swiftuibird} 
     \caption{Het swiftUI logo}
     \label{fig:swiftUI}
 \end{wrapfigure}
-Met SwiftUI kun je gebruikersinterfaces bouwen door middel van een reeks van herbruikbare en aanpasbare Views, waardoor je complexe UI-structuren kunt maken met minimale code. Het framework maakt gebruik van een state-driven architectuur, wat betekent dat de UI automatisch wordt bijgewerkt wanneer de toestand van de app verandert. In deze proef gaan we SwiftUI Views gebruiken om data aan mee te geven om zo performantie te tracken.
+Met SwiftUI kun je gebruikersinterfaces bouwen door middel van een reeks van herbruikbare en aanpasbare Views, waardoor je complexe UI-structuren kunt maken met minimale code. Het framework maakt gebruik van een state-driven architectuur, wat betekent dat de UI automatisch wordt bijgewerkt wanneer de toestand van de app verandert. SwiftUI vervangt UIKit als het primaire framework voor het bouwen van interfaces op Apple-platforms, maar het maakt achter de schermen nog steeds vaak gebruik van UIKit-componenten. In deze proef gaan we SwiftUI Views gebruiken om data aan mee te geven om zo performantie te tracken.
+
 
 \subsection{Views}
 \autocite{AppleSwiftViews} Views vormen de bouwstenen van elke SwiftUI-gebruikersinterface. Ze definiëren hoe content wordt weergegeven en gereageerd wordt op gebruikersinteracties. Views kunnen zowel elementaire interface-elementen (zoals tekst, knoppen en afbeeldingen) als complexere composities van deze elementen bevatten.
@@ -65,7 +66,7 @@ Design Patterns zijn belangerijk voor:
 
 \subsection{Model-View-ViewModel (MVVM)}
 \autocite{MediumMVVM} MVVM is een design pattern dat veel wordt gebruikt in SwiftUI voor het scheiden van de logica van de gebruikersinterface van de onderliggende gegevens. Het bestaat uit drie hoofdcomponenten:
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{MVVMPattern} 
     \caption{MVVM}
@@ -80,11 +81,14 @@ De voordelen van MVVM zijn:
 \begin{itemize}
     \item {\textbf{Scheiding van verantwoordelijkheden:} MVVM helpt bij het scheiden van de logica van de gebruikersinterface van de onderliggende gegevens, waardoor de code gemakkelijker te begrijpen en te onderhouden is. Dit zorgt ook voor een eenvoudigere uitbreidbaarheid en herbruikbaarheid van de code.}
     \item {\textbf{Testbaarheid:} Omdat de logica van de gebruikersinterface wordt gescheiden van de gegevenslogica, zijn de componenten gemakkelijker afzonderlijk te testen.}
+        \item \textbf{Binding tussen View en ViewModel:} MVVM maakt gebruik van databinding om gegevens tussen de View en de ViewModel te synchroniseren, waardoor de code voor het bijwerken van de gebruikersinterface eenvoudiger en overzichtelijker wordt.
+    
+    \item \textbf{Flexibiliteit en schaalbaarheid:} Door de scheiding van verantwoordelijkheden kunnen verschillende teams parallel werken aan de ontwikkeling van de gebruikersinterface en de onderliggende gegevenslogica, wat de algehele flexibiliteit en schaalbaarheid van het project ten goede komt.
 \end{itemize}
 
 \subsection{VIPER}
 \autocite{MediumVIPER} VIPER is een design pattern dat staat voor View, Interactor, Presenter, Entity, en Router. Het is een architectureel patroon dat is ontworpen om de code van een app in verschillende lagen te verdelen om de onderhoudbaarheid en testbaarheid te verbeteren. Hier is een overzicht van de componenten:
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{viper} 
     \caption{viper}
@@ -106,28 +110,27 @@ Voordelen van VIPER zijn:
 
 \section{XCode Performance Trackers}
 
-In deze proef gericht op het vergelijken van de performantie, rendering en lifescycles van views, zijn Xcode Profiler, Xcode Instruments en XCTest Metrics van onschatbare waarde. Xcode Profiler biedt een basisprofiel van views door CPU-, geheugen- en netwerkactiviteit te meten. Xcode Instruments gaat dieper met gedetailleerde analyses van CPU-, geheugen- en grafische prestaties, en kan rendercycli traceren. XCTest Metrics biedt automatische prestatiegegevensverzameling tijdens tests, wat helpt bij het identificeren van prestatieproblemen in views. Het integreren van bevindingen uit deze tools biedt een holistisch beeld van de view-prestaties, waardoor iteratieve optimalisatie mogelijk is voor een verbeterde gebruikerservaring en algehele app-prestaties.
+In deze proef gericht op het vergelijken van de performantie, rendering en lifescycles van views, zijn Xcode Profiler, Xcode Instruments en XCTest Metrics van onschatbare waarde. Xcode Profiler biedt een basisprofiel van views door CPU-, geheugen- en netwerkactiviteit te meten. Xcode Instruments gaat dieper met gedetailleerde analyses van CPU-, geheugen- en grafische prestaties, en kan rendercycli traceren. XCMetrics biedt automatische verzameling van prestatiegegevens tijdens het uitvoeren van tests. Dit betekent dat tijdens het testen van de code, XCTest Metrics automatisch gegevens verzamelt over de prestaties van de app, waaronder informatie over de tijd die het kost om bepaalde taken uit te voeren, zoals het laden van views. Deze verzamelde gegevens kunnen worden geanalyseerd om prestatieproblemen in de views van de app te identificeren. Het integreren van bevindingen uit deze tools biedt een holistisch beeld van de view-prestaties, waardoor iteratieve optimalisatie mogelijk is voor een verbeterde gebruikerservaring en algehele app-prestaties.
+
+
+
+\subsection{Xcode Instruments}
+Xcode Instruments is een krachtige tool die wordt geleverd als onderdeel van Apple's Xcode-ontwikkelomgeving. Het stelt ontwikkelaars in staat om diepgaande analyses uit te voeren van de prestaties en het gedrag van hun iOS-, macOS-, watchOS- en tvOS-apps. Met Instruments kunnen ontwikkelaars problemen met prestaties, geheugen, energieverbruik en meer opsporen en diagnosticeren. 
 
 \subsection{XCode Profiler}
-Xcode Profiler is een krachtige tool die wordt geleverd als onderdeel van Apple's Xcode-ontwikkelomgeving. Het stelt ontwikkelaars in staat om de prestaties van hun iOS-, macOS-, watchOS- en tvOS-apps te meten en te optimaliseren. De profiler biedt inzicht in de runtime-gedrag van de app, inclusief CPU-gebruik, geheugenverbruik, netwerkactiviteit en meer. Met deze tool kunnen we in deze proef de performantie op basis van CPU-gebruik, geheugenverbruik, enz. gaan meten. 
-\subsubsection{CPU-profiler}
+Deze tool stelt ontwikkelaars in staat om de prestaties van hun iOS-, macOS-, watchOS- en tvOS-apps te meten en te optimaliseren. De profiler biedt inzicht in de runtime-gedrag van de app, inclusief CPU-gebruik, geheugenverbruik, netwerkactiviteit en meer. Met deze tool kunnen we in deze proef de performantie op basis van CPU-gebruik, geheugenverbruik, enz. gaan meten. 
+\paragraph{CPU-profiler}
 Hiermee kan men het CPU-gebruik van een app analyseren. Men kan zien welke delen van de code veel CPU-tijd verbruiken en mogelijk optimalisaties doorvoeren om de prestaties te verbeteren.
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{BP_XcodeCpuProfiler} 
     \caption{Xcode CPU Profiler}
     \label{fig:cpuProfiler}
 \end{figure}
-\subsubsection{Geheugen-profiler}
+\paragraph{Geheugen-profiler}
 Hiermee kan men het geheugenverbruik van een app analyseren. Men kan zien hoeveel geheugen de app gebruikt en hoe dit zich verhoudt tot verschillende delen van de code. Dit kan helpen bij het identificeren van geheugenlekken en het optimaliseren van de geheugenprestaties.
-\subsubsection{Netwerkprofiler}
+\paragraph{Netwerkprofiler}
 Hiermee kan men de netwerkactiviteit van de app analyseren. Men kan zien welke netwerkverzoeken de app maakt en hoe lang deze duren. Dit kan helpen bij het identificeren van trage netwerkverbindingen en het optimaliseren van de netwerkprestaties.
-\subsubsection{Instruments}
-Xcode Profiler maakt gebruik van Instruments, een krachtige tool voor het analyseren van de prestaties van een app. Instruments biedt verschillende instrumenten voor het meten van CPU-, geheugen- en netwerkprestaties, evenals voor het profileren van grafische en energiegebruik.
-
-
-\subsection{Xcode Instruments}
-Xcode Instruments is een krachtige tool die wordt geleverd als onderdeel van Apple's Xcode-ontwikkelomgeving. Het stelt ontwikkelaars in staat om diepgaande analyses uit te voeren van de prestaties en het gedrag van hun iOS-, macOS-, watchOS- en tvOS-apps. Met Instruments kunnen ontwikkelaars problemen met prestaties, geheugen, energieverbruik en meer opsporen en diagnosticeren. 
 
 \subsubsection{Realtime monitoring}
 Instruments biedt realtime monitoring van de prestaties van een app, waardoor men direct feedback krijgt over het gedrag van een app tijdens het gebruik. Dit stelt ontwikkelaars in staat om problemen snel op te sporen en te diagnosticeren terwijl ze optreden.
@@ -148,9 +151,30 @@ XCTest Metrics biedt een grafische weergave van de verzamelde prestatiegegevens,
 \subsubsection{Automatische Metingen}
 XCTest Metrics voert automatisch metingen uit tijdens het uitvoeren van tests, waardoor ontwikkelaars zich kunnen concentreren op het schrijven van tests zonder zich zorgen te hoeven maken over het handmatig meten van prestaties. Dit maakt het gemakkelijker om consistente en betrouwbare metingen te verkrijgen.
 
+\section{SwiftUI View Diffing}
+
+View diffing in SwiftUI is een proces waarbij het framework de huidige staat van de view-hiërarchie vergelijkt met een nieuwe voorgestelde staat en de minimale set wijzigingen berekent die nodig zijn om de UI bij te werken\autocite{ViewDiffing}. Dit proces is cruciaal voor de prestaties, omdat het ervoor zorgt dat alleen de noodzakelijke updates worden uitgevoerd in plaats van de hele view-hiërarchie opnieuw te renderen.
+
+SwiftUI bereikt deze efficiëntie door een combinatie van technieken:
+
+\begin{itemize}
+    \item \textbf{Struct-based Views}: SwiftUI views zijn structs, wat waarde types zijn in Swift. Dit betekent dat ze goedkoop zijn om te creëren en te vernietigen, waardoor SwiftUI vrijelijk view-instanties kan maken en weggooien zonder significante overhead.
+    \item \textbf{Body Property}: Elke view heeft een \texttt{body}-property die de inhoud definieert. SwiftUI roept deze property aan om de huidige staat van de UI-elementen van de view te krijgen. Als de staat niet is veranderd, wordt de \texttt{body}-property niet opnieuw geëvalueerd, een optimalisatietechniek die bekend staat als memoization.
+    \item \textbf{View Identity and State Management}: Door gebruik te maken van unieke sleutels en state management technieken zoals \texttt{@State}, \texttt{@Binding}, en \texttt{@ObservedObject}, kan SwiftUI nauwkeurig bijhouden welke delen van de UI moeten worden bijgewerkt wanneer de onderliggende staat verandert.
+\end{itemize}
+
+\section{Combine}
+\autocite{AppleCombine} Combine is een declaratief Swift framework dat het mogelijk maakt om reactieve programmeerpatronen te implementeren binnen een applicatie. Het framework is ontworpen om verschillende asynchrone gebeurtenissen te verwerken en te transformeren, waarbij het gebruik maakt van \textit{publishers} en \textit{subscribers} om data te verzenden en te ontvangen. Combine integreert naadloos met Swift en SwiftUI en biedt een consistente manier om data te beheren die afkomstig is van verschillende bronnen, zoals netwerkverzoeken, gebruikersinvoer en nog veel meer. 
+
+Een van de grootste uitdagingen bij de ontwikkeling van moderne applicaties is het beheren van de \textit{state} en het waarborgen van een soepele en consistente dataoverdracht tussen verschillende onderdelen van de UI. Combine biedt een robuuste oplossing voor deze uitdaging door middel van zijn reactieve programmeermodel, wat directe implicaties heeft voor de manier waarop \textit{views} met elkaar communiceren en data delen.
+
 \section{Annotations}
 \subsection{@propertyWrapper}
-\autocite{ApplePropertyWrapper} Een property wrapper voegt een scheidingslaag toe tussen de code die beheert hoe een property word opgeslagen en de code die een eigenschap definieert. Dit is interessant om te begrijpen omdat alle volgende annotaties property wrappers zijn.
+\autocite{ApplePropertyWrapper} Property wrappers in Swift fungeren als een tussenlaag tussen de eigenschap zelf en de code die de opslag, verwerking of transformatie van de waarde van die eigenschap beheert. Deze abstractielaag biedt een gestructureerde manier om het gedrag van eigenschappen te definiëren en te beheren, waardoor de leesbaarheid, herbruikbaarheid en onderhoudbaarheid van de code worden verbeterd.
+
+Ze kunnen worden toegepast op zowel opgeslagen als berekende eigenschappen en stellen ontwikkelaars in staat om complexe logica te isoleren die nodig is voor het beheer van een eigenschap. Door het gebruik van property wrappers kunnen ontwikkelaars specifieke gedragingen voor eigenschappen definiëren, zoals validatie van waarden, lazy loading, caching en toegangscontrole.
+
+Property wrappers zijn een krachtige tool in Swift, omdat ze een compacte en elegante manier bieden om het gedrag van eigenschappen aan te passen en complexe logica te abstraheren, wat resulteert in een consistente en duidelijke codebase.
 \begin{swift}[caption=Example property wrapper code, label=property_wrapper_example]
     @propertyWrapper
     struct TwelveOrLess {
@@ -184,7 +208,7 @@ XCTest Metrics voert automatisch metingen uit tijdens het uitvoeren van tests, w
 
 
 \subsection{@State}
-\autocite{AppleState} State is een propertywrapper dat een waarde kan lezen en schrijven die word beheerd door SwiftUI. State word gebruikt voor de enige bron van de ``truth''(waarheid) voor een gegeven value type dat opgeslagen wordt binnen de view hierarchy.
+\autocite{AppleState} State is een property wrapper die een waarde kan lezen en schrijven die wordt beheerd door SwiftUI. Het wordt gebruikt als de enige bron van de 'waarheid' (truth) voor een gegeven value type die binnen de view hierarchy wordt opgeslagen. State wordt gebruikt voor het beheren van lokale toestanden binnen een view, waarbij het automatisch reageren op wijzigingen in de waarde en het opnieuw renderen van de bijbehorende view.
 
 \begin{swift}[caption=Example of @State code, label=state_example]
     struct PlayButton: View {
@@ -201,7 +225,7 @@ XCTest Metrics voert automatisch metingen uit tijdens het uitvoeren van tests, w
 
 
 \subsection{@Binding}
-\autocite{AppleBinding} Binding word gebruikt om een 2-way connection te leggen tussen een property dat data opslaat en een view dat data weergeeft. Een binding verbind een property met een bron van ``truth''(waarheid) in plaats van zelf de data op te slaan.
+\autocite{AppleBinding} Binding wordt gebruikt om een tweewegsverbinding tot stand te brengen tussen een eigenschap die gegevens opslaat en een weergave die de gegevens presenteert. Een binding verbindt een eigenschap met een bron van "truth" (waarheid), wat betekent dat het niet zelf de gegevens opslaat, maar eerder verwijst naar de bron waar de gegevens worden bewaard. Dit maakt het mogelijk dat wijzigingen in de bron onmiddellijk worden weerspiegeld in de weergave, en omgekeerd. Bijvoorbeeld, als de waarde van de eigenschap wordt gewijzigd, wordt de bijbehorende weergave automatisch bijgewerkt om de nieuwe waarde weer te geven. En als de gebruiker de waarde in de weergave wijzigt, worden de gegevens in de bron automatisch bijgewerkt om deze wijzigingen weer te geven.
 
 \begin{swift}[caption=Example of @Binding code, label=binding_example]
     struct PlayButton: View {
@@ -232,7 +256,7 @@ XCTest Metrics voert automatisch metingen uit tijdens het uitvoeren van tests, w
 
 
 \subsection{@ObservableObject}
-\autocite{AppleObservableObject} Een ObservableObject is een object dat veranderingen in zijn staat kan detecteren en hier melding(objectWillChange) van kan maken aan geïnteresseerde partijen, meestal via het Observer-patroon. Dit is een belangrijk concept in het kader van het ontwikkelen van applicaties met een reactieve programmeerstijl.
+\autocite{AppleObservableObject} Een ObservableObject is een object dat in staat is veranderingen in zijn staat te detecteren en hier melding van te maken aan geïnteresseerde partijen, via het Observer-patroon. Dit concept is van cruciaal belang bij het ontwikkelen van applicaties met een reactieve programmeerstijl. Wanneer een ObservableObject wordt gewijzigd, stuurt het automatisch een signaal (meestal objectWillChange) naar alle geabonneerde views of componenten, waardoor ze op de hoogte worden gebracht van de verandering. Dit stelt de views in staat om hun weergave bijgevolg bij te werken, wat zorgt voor een dynamische en reactieve gebruikerservaring. Bijvoorbeeld, een view kan zich abonneren op veranderingen in een ObservableObject en automatisch worden bijgewerkt wanneer de staat van dat object verandert.
 
 \subsubsection{Observer Pattern}
 \autocite{MediumDesignPatterns} Dit patroon is een gedragspatroon waarbij een object, dat de 'observable' of 'subject' wordt genoemd, een lijst met afhankelijkheden bijhoudt, ook wel 'observers' genoemd. Wanneer het observable object verandert, worden alle geïnteresseerde observers op de hoogte gesteld van deze verandering.
@@ -315,8 +339,11 @@ struct AnotherChildView: View {
 
 \end{swift}
 
+\subsection{Verschil @StateObject en @ObservedObject}
+\autocite{MediumDifferenceStateObjObservedObj} @StateObject en @ObservedObject hebben gelijkaardige functies, maar verschillen in hoe SwiftUI hun levenscyclus beheert. Met @StateObject wordt het waargenomen object automatisch geïnitialiseerd en behouden door SwiftUI, wat consistentie garandeert wanneer de huidige weergave het waargenomen object creëert. Dit kan een positieve invloed hebben op het CPU-gebruik, omdat het efficiënter is wanneer SwiftUI direct de levenscyclus van het object beheert. Aan de andere kant wordt @ObservedObject gebruikt wanneer een waargenomen object wordt geïnjecteerd als een afhankelijkheid, waarbij SwiftUI veranderingen in het object detecteert en de weergave bijwerkt.
+
 \subsection{@Observable}
-\autocite{AppleObservable} @Observable is een macro die gebruikt wordt in SwiftUI om het observer-patroon te implementeren. Dit patroon stelt een object in staat om een lijst van observers bij te houden en hen te notificeren over specifieke of algemene staatveranderingen. Deze macro is beschikbaar vanaf ios 17.0 en later. Deze macro is gemaakt om alle voorgaande macro's te vervangen.
+\autocite{AppleObservable}, \autocite{ObservablePerformance} Het gebruik van @Observable in SwiftUI helpt onnodige Swift redraws te vermijden. Deze macro, beschikbaar vanaf iOS 17.0 en later, dient als een essentieel instrument voor het implementeren van het observer-patroon. Het vervangt eerdere macro's die voor dit doel werden gebruikt en biedt ontwikkelaars een eenvoudige manier om eigenschappen te markeren die veranderingen moeten doorgeven aan views of andere componenten die geïnteresseerd zijn in die veranderingen. Wanneer een eigenschap die is geannoteerd met @Observable wordt gewijzigd, wordt automatisch een signaal verzonden naar alle views die eraan zijn gekoppeld, waardoor ze hun weergave dienovereenkomstig kunnen bijwerken. Dit biedt een krachtige en efficiënte manier om reactieve gebruikersinterfaces te bouwen in SwiftUI.
 
 \begin{swift}[caption=Example of Observable, label=Observable_example]
 // ViewModel met @Observable macro
@@ -336,7 +363,7 @@ struct SimpleView: View {
 
 
 \subsection{@Environment}
-\autocite{AppleEnvironment} In SwiftUI biedt @Environment een mechanisme om waarden door te geven door de view-hiërarchie, zonder ze expliciet door te geven aan elke view als afzonderlijke eigenschappen. Het maakt gebruik van de omgeving van de View om gegevens te delen tussen Views in een hiërarchie. Dit is handig voor het doorgeven van gegevens die van toepassing zijn op de hele app of een deel ervan, zoals thema's, kleuren, taalinstellingen, enzovoort.
+\autocite{AppleEnvironment} In SwiftUI biedt @Environment een mechanisme om waarden door te geven door de view-hiërarchie, zonder ze expliciet door te geven aan elke view als afzonderlijke eigenschappen. Het maakt gebruik van de omgeving van de View om gegevens te delen tussen Views in een hiërarchie. Dit is handig voor het doorgeven van gegevens die van toepassing zijn op de hele app of een deel ervan, zoals thema's, kleuren, taalinstellingen, enzovoort. Met @Environment kunnen views eenvoudig toegang krijgen tot deze gedeelde gegevens zonder dat ze expliciet aan elke view hoeven te worden doorgegeven, waardoor de code schoner en gemakkelijker te onderhouden wordt. Bijvoorbeeld, als de app een bepaald thema heeft ingesteld, kunnen alle views binnen de hiërarchie eenvoudig toegang krijgen tot het thema met behulp van @Environment, zonder dat het thema expliciet aan elke view hoeft te worden doorgegeven. Dit verbetert de modulariteit en flexibiliteit van de codebase.
 
 
 \begin{swift}[caption=Example of Observable, label=Observable_example]
@@ -356,5 +383,31 @@ struct ChildView: View {
         Text("This is a child view")
     }
 }
+\end{swift}
+
+\subsection{@EnvironmentObject}
+\autocite{AppleEnvironmentObject} @EnvironmentObject in SwiftUI biedt een handig mechanisme om gedeelde gegevens door te geven aan views in de view-hiërarchie. Het maakt het mogelijk om een ObservableObject te registreren op het hoogste niveau van de app, waardoor het automatisch beschikbaar wordt gesteld aan alle onderliggende views. Hierdoor kunnen views gemakkelijk toegang krijgen tot deze gedeelde gegevens zonder dat ze expliciet aan elke view moeten worden doorgegeven. Dit bevordert een efficiënte en nette manier om gedeelde staat binnen een SwiftUI-app te beheren.
+
+
+\begin{swift}[caption=Example of EnvironmentObject, label=EnvironmentObject_example]
+    class SharedData: ObservableObject {
+        @Published var text = "Hallo, wereld!"
+    }
+    
+    struct ContentView: View {
+        @EnvironmentObject var sharedData: SharedData
+        
+        var body: some View {
+            Text(sharedData.text)
+        }
+    }
+
+    struct MyView: View {
+        @StateObject var sharedData = SharedData()
+        
+        var body: some View {
+            ContentView().environmentObject(sharedData)
+        }
+    }
 \end{swift}
 

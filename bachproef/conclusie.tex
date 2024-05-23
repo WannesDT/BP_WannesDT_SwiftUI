@@ -15,31 +15,86 @@
 %onderzoek?
 
 
-\newpage
-In dit hoofdstuk word er een antwoord gegeven op de onderzoeksvragen die eerder in deze proef vermeld werden. Hier worden de resultaten samen gebracht tot een conclusie waaruit app-ontwikkelaars informatie kunnen halen om zo doordachte keuzes te kunnen maken voor het ontwikkelen van SwiftUI-Applicaties.
- 
-\section{Nieuwe Observable macro}
-Op basis van de besproken gegevens met betrekking tot Observable in vergelijking met de andere methoden voor data-binding in SwiftUI, kunnen de volgende conclusies worden getrokken:
-\subsection{refresh times}
-Observable biedt een van de snelste refresh times (2.52 microseconden) onder de onderzochte methoden. Dit betekent dat het updaten van de UI met Observable efficiënt en snel verloopt, wat resulteert in een responsieve gebruikerservaring.
-\subsection{CPU-verbruik}
-Observable heeft echter een hoger CPU-verbruik (19.45 megacycli) in vergelijking met andere methoden, zoals Binding (14.08 megacycli). Dit kan een nadeel zijn als je probeert CPU-gebruik te minimaliseren.
-\subsection{Property Updates}
-Observable voert slechts één update per aanpassing uit, wat leidt tot een lagere updatefrequentie vergeleken met Binding, ObservedObject en EnvironmentObject, die tweemaal updaten per aanpassing. Dit kan in sommige gevallen resulteren in langzamere reacties op veranderingen.
-\subsection{Gebruikssituaties}
-Door de efficiënte refresh times en lagere updatefrequentie kan Observable een goede keuze zijn voor applicaties waar snelheid belangrijk is en waar updates minder frequent zijn. In situaties waarin nauwkeurige en consistente state-updates van cruciaal belang zijn, kunnen echter andere methoden, zoals Binding, ObservedObject, of EnvironmentObject, geschikter zijn.
- 
-\newpage
-\section{Aanbevelingen}
-Door rekening te houden met deze conclusies en aanbevelingen, kunt u de juiste keuzes maken bij het ontwerpen van SwiftUI-applicaties, en zo een goede balans vinden tussen efficiëntie, snelheid en consistentie.
-\subsection{Kies de juiste methode voor specifieke behoeften}
-Gebruik Observable en EnvironmentObject wanneer snelheid en efficiëntie in het updaten van de UI prioriteit hebben.
-Environment biedt een gebalanceerde aanpak voor het delen van data over verschillende componenten heen.
-\subsection{overhead}
-Binding en ObservedObject kunnen meer overhead en trager CPU-verbruik veroorzaken. Gebruik ze met voorzichtigheid, vooral als prestaties belangrijk zijn.
-\subsection{frequentie van updates}
-Kies een benadering die past bij de frequentie van updates in uw applicatie. Meer updates zorgen voor een snellere state, maar kunnen ook de CPU-belasting verhogen.
+\section{Analyse van Gegevensoverdrachtmethoden in SwiftUI Views}
+Op basis van de voorgaande gegevens kunnen we de invloed van diverse methoden van gegevensoverdracht naar SwiftUI views op de performance, renderingfrequentie en levenscyclussen van bindings als volgt analyseren:
 
+\subsection{Performance}
+De performance wordt gemeten aan de hand van de totale CPU-gebruikstijd en de totale CPU-weight:
+\begin{itemize}
+    \item \textit{EnvironmentObject} en \textit{ObservableObject} scoren over het algemeen goed qua CPU-gebruik, waarbij ObservableObject iets meer CPU-belasting veroorzaakt.
+    \item \textit{Binding} presteert consistent slecht qua CPU-gebruik, vooral in complexe scenario's met meerdere subviews.
+    \item \textit{Observable} presteert slechter dan andere methoden qua totale vernieuwingstijd in sommige tests.
+\end{itemize}
+
+\subsection{Renderingfrequentie}
+De renderingfrequentie wordt gemeten aan de hand van het totaal aantal vernieuwingen en de totale duur van vernieuwingen:
+\begin{itemize}
+    \item \textit{EnvironmentObject} biedt een balans tussen frequentie en duur van vernieuwingen en is meestal efficiënter in de totale duur van vernieuwingen.
+    \item \textit{ObservableObject} heeft de kortste totale vernieuwingstijd, wat het geschikt maakt voor scenario's waar snelle vernieuwingen cruciaal zijn.
+    \item \textit{Observable} heeft een hogere totale vernieuwingstijd, wat kan leiden tot tragere updates.
+\end{itemize}
+
+\subsection{Property updates van Bindings}
+De property updates van bindings beïnvloedt hoe vaak gegevens bijgewerkt worden:
+\begin{itemize}
+    \item \textit{Observable}: Deze methode vereist minder frequente updates, dit heeft te maken met dat observable gemaakt is voor onnodige view redraws, dit zorgt ook voor een lagere CPU belasting.
+    \item \textit{Binding}: Deze methode vereist frequente updates, wat kan leiden tot hogere CPU-belasting en langere vernieuwingstijden.
+    \item \textit{EnvironmentObject en ObservableObject}: Deze bieden een meer gestructureerde en efficiënte manier om gegevens over te dragen, wat leidt tot minder frequente maar effectievere updates.
+\end{itemize}
+
+\newpage
+\section{Vergelijking van "Observable" met Andere Methoden}
+
+De "Observable" macro is een nieuwere methode van Apple die bedoeld is om andere methoden voor gegevensoverdracht in SwiftUI te vervangen. Hieronder volgt een gedetailleerde vergelijking van "Observable" met \textit{Binding}, \textit{EnvironmentObject} en \textit{ObservableObject} op basis van performance, renderingfrequentie en levenscyclussen van bindings.
+
+\subsection{Performance}
+De performance wordt gemeten aan de hand van de totale CPU-gebruikstijd en het totale CPU-gewicht:
+\begin{itemize}
+    \item \textit{Observable} scoort beter dan \textit{Binding}, maar slechter dan \textit{EnvironmentObject} en \textit{ObservableObject} qua CPU-gebruik. 
+    \item \textit{Observable} heeft een CPU-gebruikstijd van 400 ms in Test2 en 927 ms in Test3, wat beter is dan Binding maar slechter dan de andere methoden.
+    \item De totale CPU-gewicht voor \textit{Observable} is 294,88 Mc in Test2 en 463,30 Mc in Test3, wat betekent dat het een zwaardere belasting heeft dan \textit{EnvironmentObject}, maar minder dan \textit{Binding} en \textit{ObservableObject}.
+\end{itemize}
+
+\subsection{Renderingfrequentie}
+De renderingfrequentie wordt gemeten aan de hand van het totaal aantal vernieuwingen en de totale duur van vernieuwingen:
+\begin{itemize}
+    \item \textit{Observable} heeft een hogere totale vernieuwingstijd in Test2 (1,82 ms) en een gematigde score in Test3 (2,12 ms) vergeleken met andere methoden.
+    \item De totale vernieuwingstijd is slechter dan \textit{EnvironmentObject} en \textit{ObservableObject}, maar beter dan \textit{Binding}.
+    \item De totale vernieuwingen in Test2 en Test3 laten zien dat \textit{Observable} efficiënter is dan \textit{Binding} maar minder efficiënt dan \textit{EnvironmentObject} en \textit{ObservableObject}.
+\end{itemize}
+
+
+De "Observable" macro van Apple is een moderne methode voor gegevensoverdracht in SwiftUI, die is ontworpen om oudere methoden zoals \textit{Binding}, \textit{EnvironmentObject}, en \textit{ObservableObject} te vervangen of aan te vullen. Op basis van de uitgevoerde tests en analyse kunnen we de volgende conclusies trekken:
+
+\subsection{Voordelen van ``Observable''}
+\begin{itemize}
+    \item \textit{Verbeterde Performance}: De "Observable" macro presteert beter dan \textit{Binding} in termen van CPU-gebruik en vernieuwingstijden. Dit maakt het een efficiëntere keuze voor complexere UI's waar prestaties kritisch zijn.
+    \item \textit{Efficiëntere Renderingfrequentie}: De totale vernieuwingstijd voor "Observable" is lager dan die van \textit{Binding}, wat resulteert in vloeiendere en snellere UI-updates.
+    \item \textit{Lagere Frequentie van Updates}: "Observable" vereist minder frequente updates dan \textit{Binding}, wat de levensduur van de binding verlengt en de CPU-belasting vermindert.
+\end{itemize}
+
+\subsection{Conclusie}
+De "Observable" macro is een aanzienlijke verbetering ten opzichte van \textit{Binding} en biedt een modernere en efficiëntere aanpak voor gegevensoverdracht in SwiftUI. Hoewel \textit{EnvironmentObject} en \textit{ObservableObject} vaak betere prestaties leveren, is "Observable" een aantrekkelijke keuze voor ontwikkelaars die een balans zoeken tussen gebruiksgemak en efficiëntie. Het gebruik van "Observable" kan leiden tot betere prestaties en een responsievere gebruikersinterface in veel scenario's, waardoor het een waardevolle toevoeging is aan de toolkit van elke SwiftUI-ontwikkelaar.
+
+
+\newpage
+\section{Conclusie en Aanbevelingen}
+\begin{itemize}
+    \item \textit{EnvironmentObject} is geschikt voor scenario's waar een balans tussen prestaties en vernieuwingstijden belangrijk is. Het biedt efficiënte gegevensoverdracht met een lage CPU-belasting.
+    \item \textbf{ObservableObject} is ideaal wanneer snelle vernieuwingstijden cruciaal zijn, ondanks de hogere CPU-belasting.
+    \item \textit{Binding} moet vermeden worden in complexe UI's met meerdere subviews vanwege de hoge CPU-belasting en frequente updates.
+    \item \textit{Observable} is minder efficiënt in termen van vernieuwingstijden en moet alleen worden gebruikt wanneer specifieke voordelen van deze methode nodig zijn.
+\end{itemize}
+
+\subsection{Gebruik van Bevindingen}
+Bij het ontwerpen van efficiënte gebruikersinterfaces kunnen deze bevindingen als volgt worden benut:
+\begin{itemize}
+    \item Kies \textit{EnvironmentObject} voor algemene doeleinden en grotere applicaties waar meerdere subviews gegevens moeten delen.
+    \item Gebruik \textbf{ObservableObject} in scenario's waar snelle responstijden cruciaal zijn, zoals bij real-time data updates.
+    \item Vermijd \textit{Binding} en \textit{Observable} in complexe of prestatiekritieke delen van de applicatie om inefficiënties te voorkomen.
+\end{itemize}
+
+Door deze methoden strategisch te kiezen op basis van de hierboven beschreven performance en efficiëntie kunnen ontwikkelaars goed presterende en responsieve gebruikersinterfaces in SwiftUI ontwerpen.
 
 
 

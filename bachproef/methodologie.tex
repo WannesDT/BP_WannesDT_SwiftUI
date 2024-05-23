@@ -25,8 +25,8 @@
 %%
 %% Maak voor elke fase (behalve het literatuuronderzoek) een NIEUW HOOFDSTUK aan
 %% en geef het een gepaste titel.
-\section{long-list}
-\subsection{dataoverdrachtsmethoden}
+\section{Long-list}
+\subsection{Dataoverdrachtsmethoden}
 Deze opties bieden verschillende benaderingen om gegevens door te geven aan SwiftUI-views.
 \begin{itemize}
     \item {\textbf{State properties:} In SwiftUI kunnen gegevens door middel van @State-eigenschappen aan views worden doorgegeven. Deze optie omvat verschillende manieren waarop state-eigenschappen kunnen worden gebruikt om views dynamisch te updaten.}
@@ -37,7 +37,7 @@ Deze opties bieden verschillende benaderingen om gegevens door te geven aan Swif
     \item {\textbf{View models:} Een view model wordt vaak gebruikt in de Model-View-ViewModel (MVVM) architectuur. Deze optie omvat het gebruik van een view model om gegevens en logica te beheren, en deze vervolgens aan de SwiftUI-views door te geven.}
     \item {\textbf{Data publishers:} In SwiftUI kunnen Combine-publishers worden gebruikt om gegevensstromen te beheren en automatisch aan views door te geven. Dit maakt het mogelijk om data-reactief gedrag te implementeren, waarbij views automatisch worden bijgewerkt wanneer de gegevens wijzigen.}
 \end{itemize}
-\subsection{testtools}
+\subsection{Testtools}
 Deze lijst biedt verschillende testtools die kunnen worden gebruikt om SwiftUI-applicaties te testen en te profileren.
 \begin{itemize}
     \item {\textbf{Xcode Profiler:} Xcode bevat ingebouwde profileringsinstrumenten waarmee je de prestaties van je applicatie kunt analyseren, zoals CPU- en geheugengebruik. Je kunt specifieke gebieden van je code profileren en optimalisaties uitvoeren om de efficiëntie te verbeteren.}
@@ -47,12 +47,12 @@ Deze lijst biedt verschillende testtools die kunnen worden gebruikt om SwiftUI-a
     \item {\textbf{View Inspector:} View Inspector is een tool waarmee je de compositie van SwiftUI-views kunt analyseren en inspecteren. Dit kan nuttig zijn voor het debuggen van complexe view-hiërarchieën.}
     \item {\textbf{KIF (Keep It Functional):} KIF is een testframework waarmee je functionele tests kunt schrijven voor iOS-applicaties, inclusief SwiftUI-applicaties. Het stelt je in staat om tests te schrijven in een leesbare, natuurlijke taal.}
     \item {\textbf{Snapshot testing:} Snapshot testing is een techniek waarbij je de weergave van een view opslaat en vergelijkt met een eerdere "snapshot" om te controleren of de weergave ongewijzigd is gebleven. Er zijn verschillende tools beschikbaar voor het uitvoeren van snapshot-tests in SwiftUI, zoals SnapshotTesting.}
-    \item {\textbf{Quick and Nimble:} Quick is een testframework dat gericht is op het schrijven van gestructureerde en leesbare tests. Nimble is een bijbehorende assertiebibliotheek die expressieve asserties biedt om testcases eenvoudiger te maken.}
+    \item {\textbf{Quick and Nimble:} Quick is een testframework dat zich richt op gestructureerde en leesbare tests. Nimble, de bijbehorende library, biedt expressieve assertions om testcases eenvoudiger en duidelijker te maken. Assertions zijn voorwaarden die controleren of een stukje code werkt zoals verwacht, door bijvoorbeeld te verifiëren of een variabele een bepaalde waarde heeft of een functie het juiste resultaat retourneert.}
 \end{itemize}
-\section{testopstelling}
+\section{Testopstelling}
 Er werd een testomgeving gemaakt door SwiftUI-weergaven te ontwikkelen voor elke gegevensoverdrachtmethode. Elke weergave ontving een groot databestand dat binnen de weergave werd gewijzigd om nieuwe rendercycli te activeren. Dit proces werd herhaald voor elke overdrachtmethode en het gemiddelde CPU-gebruik en laadtijd van deze weergaven werd berekend. Deze gegevens werden geobserveerd met de eerder genoemde tools. Door de verzamelde gegevens te vergelijken, werd een conclusie getrokken over de meest efficiënte methode.
 
-\section{analyse van resultaten}
+\section{Analyse van resultaten}
 Tijdens de proef werden gegevens verzameld over het aantal keren dat SwiftUI-weergaven werden geüpdate tijdens gegevensoverdracht en de prestaties van verschillende overdrachtsmethoden. Deze resultaten werden geanalyseerd om de efficiëntie en de impact van elke methode op de applicatie te begrijpen.
 
 Het gemiddelde CPU-gebruik en laadtijd van de weergaven werden berekend voor elke methode voor gegevensoverdracht. De analyse van deze gegevens hielp patronen en trends te identificeren in de prestaties van de verschillende methoden. Daarnaast werden de frequentie en duur van rendercycli onderzocht om mogelijke knelpunten te identificeren.
