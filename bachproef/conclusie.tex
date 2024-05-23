@@ -39,13 +39,13 @@ De property updates van bindings beïnvloedt hoe vaak gegevens bijgewerkt worden
 \begin{itemize}
     \item \textit{Observable}: Deze methode vereist minder frequente updates, dit heeft te maken met dat observable gemaakt is voor onnodige view redraws, dit zorgt ook voor een lagere CPU belasting.
     \item \textit{Binding}: Deze methode vereist frequente updates, wat kan leiden tot hogere CPU-belasting en langere vernieuwingstijden.
-    \item \textit{EnvironmentObject en ObservableObject}: Deze bieden een meer gestructureerde en efficiënte manier om gegevens over te dragen, wat leidt tot minder frequente maar effectievere updates.
+    \item \textit{EnvironmentObject en ObservableObject}: Deze bieden een meer gestructureerde en efficiënte manier om gegevens over te dragen, wat leidt tot minder frequente updates.
 \end{itemize}
 
 \newpage
 \section{Vergelijking van "Observable" met Andere Methoden}
 
-De "Observable" macro is een nieuwere methode van Apple die bedoeld is om andere methoden voor gegevensoverdracht in SwiftUI te vervangen. Hieronder volgt een gedetailleerde vergelijking van "Observable" met \textit{Binding}, \textit{EnvironmentObject} en \textit{ObservableObject} op basis van performance, renderingfrequentie en levenscyclussen van bindings.
+De "Observable" macro is een nieuwere methode van Apple die bedoeld is om andere ``observable''-methoden voor gegevensoverdracht in SwiftUI te vervangen. Hieronder volgt een gedetailleerde vergelijking van "Observable" met \textit{Binding}, \textit{EnvironmentObject} en \textit{ObservableObject} op basis van performance, renderingfrequentie en levenscyclussen van bindings.
 
 \subsection{Performance}
 De performance wordt gemeten aan de hand van de totale CPU-gebruikstijd en het totale CPU-gewicht:
@@ -68,30 +68,30 @@ De "Observable" macro van Apple is een moderne methode voor gegevensoverdracht i
 
 \subsection{Voordelen van ``Observable''}
 \begin{itemize}
-    \item \textit{Verbeterde Performance}: De "Observable" macro presteert beter dan \textit{Binding} in termen van CPU-gebruik en vernieuwingstijden. Dit maakt het een efficiëntere keuze voor complexere UI's waar prestaties kritisch zijn.
+    \item \textit{Verbeterde Performance}: De ``Observable'' macro presteert beter dan \textit{Binding} in termen van CPU-gebruik en vernieuwingstijden. Dit maakt het een efficiëntere keuze voor complexere UI's waar prestaties kritisch zijn.
     \item \textit{Efficiëntere Renderingfrequentie}: De totale vernieuwingstijd voor "Observable" is lager dan die van \textit{Binding}, wat resulteert in vloeiendere en snellere UI-updates.
     \item \textit{Lagere Frequentie van Updates}: "Observable" vereist minder frequente updates dan \textit{Binding}, wat de levensduur van de binding verlengt en de CPU-belasting vermindert.
 \end{itemize}
 
 \subsection{Conclusie}
-De "Observable" macro is een aanzienlijke verbetering ten opzichte van \textit{Binding} en biedt een modernere en efficiëntere aanpak voor gegevensoverdracht in SwiftUI. Hoewel \textit{EnvironmentObject} en \textit{ObservableObject} vaak betere prestaties leveren, is "Observable" een aantrekkelijke keuze voor ontwikkelaars die een balans zoeken tussen gebruiksgemak en efficiëntie. Het gebruik van "Observable" kan leiden tot betere prestaties en een responsievere gebruikersinterface in veel scenario's, waardoor het een waardevolle toevoeging is aan de toolkit van elke SwiftUI-ontwikkelaar.
+De "Observable" macro is een aanzienlijke verbetering ten opzichte van \textit{Binding} en biedt een modernere en efficiëntere aanpak voor gegevensoverdracht in SwiftUI. Hoewel \textit{EnvironmentObject} en \textit{ObservableObject} vaak betere prestaties leveren, is ``Observable'' een aantrekkelijke keuze voor ontwikkelaars die een balans zoeken tussen gebruiksgemak en efficiëntie. Het gebruik van "Observable" kan leiden tot betere prestaties en een responsievere gebruikersinterface in veel scenario's, waardoor het een waardevolle toevoeging is aan de toolkit van elke SwiftUI-ontwikkelaar.
 
 
 \newpage
 \section{Conclusie en Aanbevelingen}
 \begin{itemize}
-    \item \textit{EnvironmentObject} is geschikt voor scenario's waar een balans tussen prestaties en vernieuwingstijden belangrijk is. Het biedt efficiënte gegevensoverdracht met een lage CPU-belasting.
+    \item \textbf{EnvironmentObject} is geschikt voor scenario's waar een balans tussen prestaties en vernieuwingstijden belangrijk is. Het biedt efficiënte gegevensoverdracht met een lage CPU-belasting.
     \item \textbf{ObservableObject} is ideaal wanneer snelle vernieuwingstijden cruciaal zijn, ondanks de hogere CPU-belasting.
-    \item \textit{Binding} moet vermeden worden in complexe UI's met meerdere subviews vanwege de hoge CPU-belasting en frequente updates.
-    \item \textit{Observable} is minder efficiënt in termen van vernieuwingstijden en moet alleen worden gebruikt wanneer specifieke voordelen van deze methode nodig zijn.
+    \item \textbf{Binding} moet vermeden worden in complexe UI's met meerdere subviews vanwege de hoge CPU-belasting en frequente updates.
+    \item \textbf{Observable} is minder efficiënt in termen van vernieuwingstijden en moet alleen worden gebruikt wanneer specifieke voordelen van deze methode nodig zijn.
 \end{itemize}
 
 \subsection{Gebruik van Bevindingen}
 Bij het ontwerpen van efficiënte gebruikersinterfaces kunnen deze bevindingen als volgt worden benut:
 \begin{itemize}
-    \item Kies \textit{EnvironmentObject} voor algemene doeleinden en grotere applicaties waar meerdere subviews gegevens moeten delen.
+    \item Kies \textbf{EnvironmentObject} voor algemene doeleinden en grotere applicaties waar meerdere subviews gegevens moeten delen.
     \item Gebruik \textbf{ObservableObject} in scenario's waar snelle responstijden cruciaal zijn, zoals bij real-time data updates.
-    \item Vermijd \textit{Binding} en \textit{Observable} in complexe of prestatiekritieke delen van de applicatie om inefficiënties te voorkomen.
+    \item Vermijd \textbf{Binding} en \textit{Observable} in complexe of prestatiekritieke delen van de applicatie om inefficiënties te voorkomen.
 \end{itemize}
 
 Door deze methoden strategisch te kiezen op basis van de hierboven beschreven performance en efficiëntie kunnen ontwikkelaars goed presterende en responsieve gebruikersinterfaces in SwiftUI ontwerpen.
