@@ -13,7 +13,7 @@ In dit hoofdstuk zullen we de basisprincipes van Swift en SwiftUI verkennen, sam
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{swiftbird} 
-    \caption{Het swift logo}
+    \caption{Het swift logo \autocite{SwiftBirdImage}}
     \label{fig:swift}
 \end{figure}
 \subsubsection{Geschiedenis}
@@ -24,7 +24,7 @@ Een handleiding van 500 pagina's werd ook tijdens de WWDC beschikbaar gesteld in
 \autocite{AppleSwiftUI} SwiftUI is een door Apple ontwikkeld framework voor het bouwen van gebruikersinterfaces voor iOS, macOS, watchOS en tvOS, met behulp van de programmeertaal Swift. Het is ontworpen om de ontwikkeling van gebruikersinterfaces te vereenvoudigen door middel van een declaratieve syntax en een reeks krachtige tools en functies. 
 \begin{wrapfigure}{r}{0.3\textwidth}
     \includegraphics[width=0.3\textwidth]{swiftuibird} 
-    \caption{Het swiftUI logo}
+    \caption{Het swiftUI logo \autocite{SwiftUiImage}}
     \label{fig:swiftUI}
 \end{wrapfigure}
 Met SwiftUI kun je gebruikersinterfaces bouwen door middel van een reeks van herbruikbare en aanpasbare Views, waardoor je complexe UI-structuren kunt maken met minimale code. Het framework maakt gebruik van een state-driven architectuur, wat betekent dat de UI automatisch wordt bijgewerkt wanneer de toestand van de app verandert. SwiftUI vervangt UIKit als het primaire framework voor het bouwen van interfaces op Apple-platforms, maar het maakt achter de schermen nog steeds vaak gebruik van UIKit-componenten. In deze proef gaan we SwiftUI Views gebruiken om data aan mee te geven om zo performantie te tracken.
@@ -69,7 +69,7 @@ Design Patterns zijn belangerijk voor:
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{MVVMPattern} 
-    \caption{MVVM}
+    \caption{MVVM \autocite{MVVMImage}}
     \label{fig:mvvm}
 \end{figure}
 \begin{itemize}
@@ -91,7 +91,7 @@ De voordelen van MVVM zijn:
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{viper} 
-    \caption{viper}
+    \caption{viper \autocite{ViperImage}}
     \label{fig:viper}
 \end{figure}
 
@@ -175,7 +175,7 @@ Een van de grootste uitdagingen bij de ontwikkeling van moderne applicaties is h
 Ze kunnen worden toegepast op zowel opgeslagen als berekende eigenschappen en stellen ontwikkelaars in staat om complexe logica te isoleren die nodig is voor het beheer van een eigenschap. Door het gebruik van property wrappers kunnen ontwikkelaars specifieke gedragingen voor eigenschappen definiëren, zoals validatie van waarden, lazy loading, caching en toegangscontrole.
 
 Property wrappers zijn een krachtige tool in Swift, omdat ze een compacte en elegante manier bieden om het gedrag van eigenschappen aan te passen en complexe logica te abstraheren, wat resulteert in een consistente en duidelijke codebase.
-\begin{swift}[caption=Example property wrapper code, label=property_wrapper_example]
+\begin{swift}[caption=Example property wrapper code \autocite{PropertyWrapperExample}, label=property_wrapper_example]
     @propertyWrapper
     struct TwelveOrLess {
         private var number = 0
@@ -210,7 +210,7 @@ Property wrappers zijn een krachtige tool in Swift, omdat ze een compacte en ele
 \subsection{@State}
 \autocite{AppleState} State is een property wrapper die een waarde kan lezen en schrijven die wordt beheerd door SwiftUI. Het wordt gebruikt als de enige bron van de 'waarheid' (truth) voor een gegeven value type die binnen de view hierarchy wordt opgeslagen. State wordt gebruikt voor het beheren van lokale toestanden binnen een view, waarbij het automatisch reageren op wijzigingen in de waarde en het opnieuw renderen van de bijbehorende view.
 
-\begin{swift}[caption=Example of @State code, label=state_example]
+\begin{swift}[caption=Example of @State code \autocite{AppleState}, label=state_example]
     struct PlayButton: View {
         @State private var isPlaying: Bool = false // Create the state.
         
@@ -227,7 +227,7 @@ Property wrappers zijn een krachtige tool in Swift, omdat ze een compacte en ele
 \subsection{@Binding}
 \autocite{AppleBinding} Binding wordt gebruikt om een tweewegsverbinding tot stand te brengen tussen een eigenschap die gegevens opslaat en een weergave die de gegevens presenteert. Een binding verbindt een eigenschap met een bron van "truth" (waarheid), wat betekent dat het niet zelf de gegevens opslaat, maar eerder verwijst naar de bron waar de gegevens worden bewaard. Dit maakt het mogelijk dat wijzigingen in de bron onmiddellijk worden weerspiegeld in de weergave, en omgekeerd. Bijvoorbeeld, als de waarde van de eigenschap wordt gewijzigd, wordt de bijbehorende weergave automatisch bijgewerkt om de nieuwe waarde weer te geven. En als de gebruiker de waarde in de weergave wijzigt, worden de gegevens in de bron automatisch bijgewerkt om deze wijzigingen weer te geven.
 
-\begin{swift}[caption=Example of @Binding code, label=binding_example]
+\begin{swift}[caption=Example of @Binding code \autocite{AppleBinding}, label=binding_example]
     struct PlayButton: View {
         @Binding var isPlaying: Bool
         
@@ -264,7 +264,7 @@ Property wrappers zijn een krachtige tool in Swift, omdat ze een compacte en ele
 \subsubsection{@Published}
 \autocite{ApplePublished} De eenvoudigste manier om een object als observable te maken, is door de @Published-property wrapper te gebruiken voor eigenschappen die je wilt observeren. Wanneer de waarde van een eigenschap die is gemarkeerd met @Published verandert, zal het observable object automatisch melding maken van deze verandering aan alle geabonneerde observers.
 
-\begin{swift}[caption=Example of implemented Observable Pattern, label=observable_example]
+\begin{swift}[caption=Example of implemented Observable Pattern \autocite{AppleObservableObject}, label=observable_example]
 class Contact: ObservableObject {
     @Published var name: String
     @Published var age: Int
@@ -294,7 +294,7 @@ print(john.haveBirthday())
 \end{swift}
 
 \subsection{@StateObject}
-StateObject is een property wrapper in SwiftUI, waarmee je een instantie van een observable object kunt maken en behouden gedurende de levensduur van een specifieke SwiftUI View. Dit is handig wanneer je een observable object wilt gebruiken om de staat van een weergave te beheren, maar je wilt niet dat deze wordt gedeeld tussen verschillende instanties van dezelfde weergave.
+\Autocite{AppleStateObject} StateObject is een property wrapper in SwiftUI, waarmee je een instantie van een observable object kunt maken en behouden gedurende de levensduur van een specifieke SwiftUI View. Dit is handig wanneer je een observable object wilt gebruiken om de staat van een weergave te beheren, maar je wilt niet dat deze wordt gedeeld tussen verschillende instanties van dezelfde weergave.
 
 \begin{swift}[caption=Example of StateObject, label=stateobject_example]
 class MyData: ObservableObject {
@@ -366,7 +366,7 @@ struct SimpleView: View {
 \autocite{AppleEnvironment} In SwiftUI biedt @Environment een mechanisme om waarden door te geven door de view-hiërarchie, zonder ze expliciet door te geven aan elke view als afzonderlijke eigenschappen. Het maakt gebruik van de omgeving van de View om gegevens te delen tussen Views in een hiërarchie. Dit is handig voor het doorgeven van gegevens die van toepassing zijn op de hele app of een deel ervan, zoals thema's, kleuren, taalinstellingen, enzovoort. Met @Environment kunnen views eenvoudig toegang krijgen tot deze gedeelde gegevens zonder dat ze expliciet aan elke view hoeven te worden doorgegeven, waardoor de code schoner en gemakkelijker te onderhouden wordt. Bijvoorbeeld, als de app een bepaald thema heeft ingesteld, kunnen alle views binnen de hiërarchie eenvoudig toegang krijgen tot het thema met behulp van @Environment, zonder dat het thema expliciet aan elke view hoeft te worden doorgegeven. Dit verbetert de modulariteit en flexibiliteit van de codebase.
 
 
-\begin{swift}[caption=Example of Observable, label=Observable_example]
+\begin{swift}[caption=Example of Environment, label=Environment_example]
 struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
     
