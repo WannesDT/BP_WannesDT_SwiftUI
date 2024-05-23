@@ -1,98 +1,14 @@
 \chapter{Ruwe resultaten}%
 \label{ch:ruweresultaten}
-In dit deel word er over alle ruwe resultaten gegaan. Elke afbeelding in dit hoofdstuk bevatten rechtstreekse resultaten vanuit de XCode Profiler. Bij deze afbeeldingen word er ook een kort woordje uitleg gedaan die de resultaten beschrijven.
+In dit deel word er over alle ruwe resultaten gegaan. Elke afbeelding in dit hoofdstuk bevatten rechtstreekse resultaten vanuit de XCode Profiler. Bij deze afbeeldingen word er ook een kort woordje uitleg gedaan die de resultaten beschrijven. In dit hoofdstuk word er vaak gesproken over data, de datatype dat hier telkens gebruikt word is een AttributedString.
 
 Voor het meten van het CPU verbruik tijdens het testen van verschillende methoden van data-overdracht is de Xcode profiling tool gebruikt met als template de CPU profiler. Met deze tool is gemeten hoeveel Mc(Mega cycles, cycle = 
 de tijd die nodig is voor de uitvoering van één eenvoudige processorbewerking) de app vereist heeft van de CPU per type van data-overdracht. 
 
 Voor het meten van het aantal updates van verschillende view property's, view refreshes en totale CPU gebruik tijd tijdens het testen van verschillende methoden van data-overdracht is de Xcode profiling tool gebruikt met als template de Swift-UI profiler. 
 
-\section{test1: het testen op een lege view met grote dataoverdracht}
-\subsection{CPU verbruik}
-
-\paragraph{binding}
-Uit de tabel blijkt dat wanneer we een binding gebruiken om een groot object door te geven aan een view, en we maken een aanpassing in die view, dit ongeveer 14,08 mega cycli van de CPU vereist. Bindings worden voornamelijk voor primitieve types gebruikt, maar voor dit onderzoek word er een groot object aan meegegeven.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{BP_CpuUsageBinding} 
-    \caption{test1: CPU gebruik van binding}
-    \label{fig:cpuBinding}
-\end{figure}
-
-\paragraph{environment}
-Uit de tabel blijkt dat het gebruik van Environment om een groot object door te geven aan een view, en het vervolgens aanpassen van dat object, ongeveer 250,08 kilocycli van de CPU vereist.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{BP_CpuUsageEnvironment} 
-    \caption{test1: CPU gebruik van environment}
-    \label{fig:cpuEnvironment}
-\end{figure}
-
-\paragraph{environmentObject}
-Uit de tabel blijkt dat het gebruik van een environmentObject om een groot object door te geven aan een view, en het vervolgens aanpassen van dat object, ongeveer 17,13 mega cycli van de CPU vereist.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{BP_CpuUsageEnvironmentObject} 
-    \caption{test1: CPU gebruik van environmentObject}
-    \label{fig:cpuEnvironmentObject}
-\end{figure}
-
-\paragraph{observable}
-Uit de tabel blijkt dat wanneer we een Observable gebruiken om een groot object door te geven aan een view, en we vervolgens een aanpassing aan dat object in die view maken, dit ongeveer 19,45 mega cycli van de CPU vereist.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{BP_CpuUsageObservable} 
-    \caption{test1: CPU gebruik van een Observable}
-    \label{fig:cpuObservable}
-\end{figure}\
-
-\paragraph{observableObject}
-Uit de tabel blijkt dat wanneer we een observableObject gebruiken om een groot object door te geven aan een view, en we vervolgens een aanpassing aan dat object in die view maken, dit ongeveer 17,82 mega cycli van de CPU vereist.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{BP_CpuUsageObservedObject} 
-    \caption{test1: CPU gebruik van observableObject}
-    \label{fig:cpuObservedObject}
-\end{figure}
-
-\paragraph{without property wrappers}
-Uit de tabel blijkt dat het simpelweg doorgeven van een groot object aan een view zonder speciale annotaties, en zonder er vervolgens aanpassingen op te maken, gemiddeld 2,00 mega cycli van de CPU verbruikt.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{BP_CpuUsageWithoutPropertyWrapper} 
-    \caption{test1: CPU gebruik van een view zonder property wrappers}
-    \label{fig:cpuWithoutPropertyWrapper}
-\end{figure}
-
-\newpage
-\subsection{Property updates}
-\paragraph{Snellere reactiesnelheid}
-Binding, ObservedObject en EnvironmentObject passen de property bij elke wijziging tweemaal aan, wat zorgt voor een snellere en consistenter bijgewerkte state. Deze methoden zijn geschikt voor applicaties waarbij real-time gegevensuitwisseling en een directe reactie op veranderingen essentieel zijn, zoals een chatapplicatie of een live-dashboard.
-
-\paragraph{Tragere reactiesnelheid}
-Daarentegen voeren Observable en Environment slechts één update per aanpassing uit, wat kan resulteren in minder efficiënte of langzamere reacties op veranderingen. Deze methoden kunnen beter geschikt zijn voor applicaties waar updates minder frequent zijn of waar de responsietijd minder kritisch is, zoals een notitie-app of een takenbeheer-app.
-
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{BP_ViewPropertyUpdates} 
-    \caption{test1: Aantal keren dat de property's geupdate zijn bij het 101 keer opnieuw toewijzen}
-    \label{fig:propertyUpdates}
-\end{figure}
-
-\newpage
-\subsection{View refresh time}
-Voor het meten van het gemiddelde view refresh times van SwiftUI Views tijdens het testen van verschillende methoden van data-overdracht is de Xcode profiling tool gebruikt met als template de SwiftUI profiler. De resultaten zijn waargenomen door een view aan te maken, de data door te geven volgens de methode die aangegeven is. Vervolgens de data updaten. Dit 100x herhalen voor elk type View. Ten slotte de gemiddelde tijdswaarden aflezen in de Xcode profiler.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{BP_ViewRefreshCountAvgDuration} 
-    \caption{test1: Gemiddelde duratie voor de view om in te laden per property type}
-    \label{fig:propertyRefreshDuration}
-\end{figure}
-
-\section{test2: Dataoverdracht in subview's}
-In deze sectie word de applicatie in de afbeelding hieronder gebruikt om de testen uit te voeren. Opgebouwd uit 1 VStack's die 10 HStack's bevat per HStack worden er 10 Tegels weergegeven. Elke tegel is zeer CPU heavy opgebouwd zodat de resultaten meer zichtbaar worden in de testen. Elke tile bevat ook een knop die een aanpassing van de testbare data gaat triggeren. In volgende afbeelding word de hierarchy afgebeeld. Voor elk type van dataoverdracht is er 10 keer op de button gedrukt voor het wijzigen van de view. Zo zijn de metingen tot stand gekomen. Alle ruwe resultaten die waargenomen zijn per datatype kan u terugvinden in bijlagen onder sectie test2: Dataoverdracht in subview's. 
+\section{test1: Dataoverdracht in child views}
+In deze sectie word de applicatie in de afbeelding hieronder gebruikt om de testen uit te voeren. Opgebouwd uit 1 verticale lijsten die 10 horizontale lijsten bevat per horizontale lijst worden er 10 cellen weergegeven. Elke cel is zeer CPU heavy opgebouwd zodat de resultaten meer zichtbaar worden in de testen. Elke cel bevat ook een knop die een aanpassing van de testbare data gaat triggeren. In volgende afbeelding word de hierarchy afgebeeld. Voor elk type van dataoverdracht is er 10 keer op de button gedrukt voor het wijzigen van de view. Zo zijn de metingen tot stand gekomen. Alle ruwe resultaten die waargenomen zijn per datatype kan u terugvinden in bijlagen onder sectie test1: Dataoverdracht in child views. 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{testapplication} 
@@ -163,9 +79,9 @@ Onderstaande tabel bevat alle samengevatte resultaten uit deze test in 1 tabel g
 \end{table}
 
 
-\section{Test3: Dataoverdracht naar meerdere subview's met lazyLists}
+\section{test2: Dataoverdracht naar meerdere child views met lazyLists}
 % Binding test 2
-In deze sectie word de applicatie in de afbeelding hieronder gebruikt om de testen uit te voeren. Opgebouwd uit 1 LazyVStack's die 10 LazyHStack's bevat per HStack worden er 10 Tegels weergegeven. Elke tegel is zeer CPU heavy opgebouwd zodat de resultaten meer zichtbaar worden in de testen. Elke tile bevat ook een knop die een aanpassing van de testbare data gaat triggeren. In volgende afbeelding word de hierarchy afgebeeld. Voor elk type van dataoverdracht is er 10 keer op de button gedrukt voor het wijzigen van de view. Zo zijn de metingen tot stand gekomen. Alle ruwe resultaten die waargenomen zijn per datatype kan u terugvinden in bijlagen onder sectie Test3: Dataoverdracht naar meerdere subview's met lazyLists.
+In deze sectie word de applicatie in de afbeelding hieronder gebruikt om de testen uit te voeren. Opgebouwd uit 1 LazyVStack's die 10 LazyHStack's bevat per HStack worden er 10 Tegels weergegeven. Elke tegel is zeer CPU heavy opgebouwd zodat de resultaten meer zichtbaar worden in de testen. Elke tile bevat ook een knop die een aanpassing van de testbare data gaat triggeren. De data word naar elke tile doorgegeven dus heeft invloed op alle child views. In volgende afbeelding word de hierarchy afgebeeld. Voor elk type van dataoverdracht is er 10 keer op de button gedrukt voor het wijzigen van de data die verbonden is met alle view's. Zo zijn de metingen tot stand gekomen. Alle ruwe resultaten die waargenomen zijn per datatype kan u terugvinden in bijlagen onder sectie test2: Dataoverdracht naar meerdere child views met lazyLists.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{testapplication} 
@@ -236,9 +152,9 @@ Onderstaande tabel bevat alle samengevatte resultaten uit deze test in 1 tabel g
 \end{table}
 
 
-\section{Test4: Dataoverdracht naar meerdere subview's}
+\section{test3: Dataoverdracht naar meerdere child views}
 % Binding test 3
-In deze sectie word de applicatie in de afbeelding hieronder gebruikt om de testen uit te voeren. Opgebouwd uit 1 VStack's die 10 HStack's bevat per HStack worden er 10 Tegels weergegeven. Elke tegel is zeer CPU heavy opgebouwd zodat de resultaten meer zichtbaar worden in de testen. Elke tile bevat ook een knop die een aanpassing van de testbare data gaat triggeren. In volgende afbeelding word de hierarchy afgebeeld. Voor elk type van dataoverdracht is er 10 keer op de button gedrukt voor het wijzigen van de view. Zo zijn de metingen tot stand gekomen. Alle ruwe resultaten die waargenomen zijn per datatype kan u terugvinden in bijlagen onder sectie Test4: Dataoverdracht naar meerdere subview'ss.
+In deze sectie word de applicatie in de afbeelding hieronder gebruikt om de testen uit te voeren. Opgebouwd uit 1 VStack's die 10 HStack's bevat per HStack worden er 10 Tegels weergegeven. Elke tegel is zeer CPU heavy opgebouwd zodat de resultaten meer zichtbaar worden in de testen. Elke tile bevat ook een knop die een aanpassing van de testbare data gaat triggeren. De data word naar elke tile doorgegeven dus heeft invloed op alle child views. In volgende afbeelding word de hierarchy afgebeeld. Voor elk type van dataoverdracht is er 10 keer op de button gedrukt voor het wijzigen van de data die verbonden is met alle view's. Zo zijn de metingen tot stand gekomen. Alle ruwe resultaten die waargenomen zijn per datatype kan u terugvinden in bijlagen onder sectie test3: Dataoverdracht naar meerdere child views.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{testapplication} 
@@ -291,7 +207,7 @@ Onderstaande tabel bevat alle samengevatte resultaten uit deze test in 1 tabel g
 \label{ch:resultaten}
 In dit hoofdstuk word er dieper in de onderzoeksresultaten van dit onderzoek gedelft. Alle resultaten zijn verkregen door de applicatie te testen via een Iphone 15 pro, IOS 17.4. Alle testen zijn ook systematisch 10 tot 100 keer overlopen voor een correcter resultaat. Van elke test word er nu een vergelijking gemaakt van de verschillende annotaties. Om zo tot een conclusie te komen.
 
-\section{test2: het testen op een lege view met grote dataoverdracht}
+\section{test1: het testen op een lege view met grote dataoverdracht}
 Uit deze test blijkt dat de beste methode voor dataoverdracht binnen subviews op alle vlakken, behalve vernieuwingstijd, EnvironmentObject is. Als een snellere vernieuwingstijd vereist is, is ObservableObject een betere keuze, hoewel dit wel resulteert in een verdubbeling van de belasting op de CPU in vergelijking met andere methoden. De slechtste methode in deze test is de nieuwe Observable-macro, waarvan de totale vernieuwingstijd 4 tot 5 keer hoger ligt dan die van de andere methoden. 
 \begin{table}[H]
     \centering
@@ -311,7 +227,7 @@ Uit deze test blijkt dat de beste methode voor dataoverdracht binnen subviews op
         Total CPU weight & \cellcolor{green!50}245,72 Mc & 294,88 Mc & \cellcolor{green!50}243,61 Mc & \cellcolor{red!50}653,23 Mc \\ 
         \hline
     \end{tabularx}
-    \caption{Samengevatte resultaten van test2}
+    \caption{Samengevatte resultaten van test1}
     \label{table:summary1}
 \end{table}
 \begin{itemize}
@@ -319,7 +235,7 @@ Uit deze test blijkt dat de beste methode voor dataoverdracht binnen subviews op
     \item \textcolor{red}{\textbf{Rood}}: Slechtste score
 \end{itemize}
 
-\section{Test3: Dataoverdracht naar meerdere subview's met lazyLists}
+\section{test2: Dataoverdracht naar meerdere child views met lazyLists}
 Uit deze test blijkt dat de beste methode voor dataoverdracht naar meerdere subview's met lazyLists op alle vlakken, behalve CPU usage time, EnvironmentObject is. Als een snellere CPU usage time vereist is, is ObservableObject een betere keuze, hoewel dit wel resulteert in een verdubbeling van de belasting op de CPU in vergelijking met andere methoden. De relatief slechtste methode in deze test is binding, deze scoort op vrijwel alle aspecten de slechtste score.  
 \begin{table}[h!]
     \centering
@@ -350,7 +266,7 @@ Uit deze test blijkt dat de beste methode voor dataoverdracht naar meerdere subv
         Total CPU weight & \cellcolor{red!50}936,85 Mc & 463,30 Mc & \cellcolor{green!50}429,49 Mc & 862,21 Mc \\ 
         \hline
     \end{tabularx}
-    \caption{Samengevatte resultaten van test3}
+    \caption{Samengevatte resultaten van test2}
     \label{table:summary2}
 \end{table}
 
@@ -358,7 +274,7 @@ Uit deze test blijkt dat de beste methode voor dataoverdracht naar meerdere subv
     \item \textcolor{green}{\textbf{Groen}}: Beste score
     \item \textcolor{red}{\textbf{Rood}}: Slechtste score
 \end{itemize}
-\section{Test4: Dataoverdracht naar meerdere subview's}
+\section{test3: Dataoverdracht naar meerdere child views}
 Uit deze test blijkt dat de beste methode voor dataoverdracht naar meerdere subview's op alle vlakken, de nieuwe Observable macro is. EnvironmentObject, ObservableObject scoren bijna even goed als de observable macro. Binding daarintegen scoort op alle criteria het slechtste.
 \begin{table}[H]
     \centering
@@ -393,6 +309,6 @@ Uit deze test blijkt dat de beste methode voor dataoverdracht naar meerdere subv
         Total CPU weight & \cellcolor{red!50} 12.93 Gc & \cellcolor{green!50}12.19 Gc & \cellcolor{green!50}12.10 Gc & \cellcolor{green!50}12.04 Gc \\
         \hline
     \end{tabularx}
-    \caption{Samengevatte resultaten van test4}
+    \caption{Samengevatte resultaten van test3}
     \label{table:summary3}
 \end{table}

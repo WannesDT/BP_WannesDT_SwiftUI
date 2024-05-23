@@ -9,7 +9,7 @@
 In dit hoofdstuk zullen we de basisprincipes van Swift en SwiftUI verkennen, samen met enkele essentiële design patterns en annotaties die vaak worden gebruikt in SwiftUI-ontwikkeling. De annotaties waar we het over gaan hebben zijn de annotaties die we gaan gebruiken om Data door te geven in SwiftUI. Na dit hoofdstuk heeft u genoeg kennis en inzicht om de rest van deze proef te begrijpen.
 
 \section{Swift}
-\autocite{WikiSwift} Swift is een programmeertaal ontwikkeld door Apple primair voor de besturingsystemen iOS en OS X maar ook voor iPadOS, tvOS, en meerdere platformen van Apple. De taal is gebaseerd op Objective-C die eerder werd gebruikt voor het ontwikkelen van applicaties. Swift werd in 2014 aangekondigt tijdens de jaarlijkse ontwikkelaarsconferentie WWDC 2014, samen met OS X Yosemite, iOS 8 en diverse SDK's. Dit is de basis programmeertaal die we doorheen deze proef gaan gebruiken.
+\autocite{WikiSwift} Swift is een programmeertaal ontwikkeld door Apple primair voor de besturingsystemen iOS en OS X maar ook voor iPadOS, tvOS, en andere platforms van Apple. De taal is gebaseerd op Objective-C die eerder werd gebruikt voor het ontwikkelen van applicaties. Swift werd in 2014 aangekondigt tijdens de jaarlijkse ontwikkelaarsconferentie WWDC 2014, samen met OS X Yosemite, iOS 8 en diverse SDK's. Dit is de basis programmeertaal die we doorheen deze proef gaan gebruiken.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{swiftbird} 
@@ -51,6 +51,20 @@ Met SwiftUI kun je gebruikersinterfaces bouwen door middel van een reeks van her
         \label{fig:viewex1}
     \end{minipage}
 \end{figure}
+
+\subsection{VStack en HStack}
+\autocite{AppleVstackHstack} VStack en HStack zijn eenvoudige en essentiële componenten in SwiftUI die helpen bij het organiseren van views in een user interface.
+
+\textbf{VStack}: De VStack (Vertical Stack) positioneert views in een verticale lijn. Dit betekent dat elke view binnen een VStack onder de vorige wordt geplaatst, van boven naar beneden. Het is ideaal voor het maken van layouts waarbij je elementen verticaal wilt stapelen, zoals tekstblokken, afbeeldingen, knoppen, enzovoort.
+
+\textbf{HStack}: De HStack (Horizontal Stack) positioneert views in een horizontale lijn. Dit betekent dat elke view binnen een HStack naast de vorige wordt geplaatst, van links naar rechts. HStack is nuttig voor het maken layouts waarbij je elementen naast elkaar wilt zetten, zoals een reeks knoppen naast elkaar, pictogrammen, of tekst met een afbeelding aan de zijkant.
+
+\subsection{LazyVstack en LazyHstack}
+\autocite{LazyHStackVStack} LazyVStack en LazyHStack zijn componenten in SwiftUI die vergelijkbaar zijn met VStack en HStack, maar ontworpen zijn voor efficiënter geheugen- en prestatiebeheer bij het weergeven van grote hoeveelheden data. 
+
+\textbf{LazyVStack}: De LazyVStack (Lazy Vertical Stack) positioneert views in een verticale lijn, net als VStack. Het verschil is dat LazyVStack alleen de views rendert die momenteel zichtbaar zijn op het scherm. Dit betekent dat als je een lange lijst van items hebt, alleen de items binnen het zichtbare gedeelte van de lijst worden gerenderd en weergegeven, wat leidt tot betere prestaties en minder geheugengebruik.
+
+\textbf{LazyHStack}: De LazyHStack (Lazy Horizontal Stack) positioneert views in een horizontale lijn, zoals HStack. Net als LazyVStack, rendert LazyHStack alleen de views die zichtbaar zijn in het scrollbare gebied. Dit maakt het mogelijk om efficiënte horizontale scrollable content te maken, zoals carrousels of galerijen met een groot aantal items.
 
 \section{Design Patterns}
 Design patterns zijn oplossingen voor veelvoorkomende ontwerpproblemen in softwareontwikkeling. Ze bieden gestandaardiseerde en herbruikbare oplossingen voor problemen die zich vaak voordoen tijdens het ontwerpen van software. In Swift met SwiftUI zijn verschillende design patterns van toepassing om de ontwikkeling van robuuste en onderhoudbare apps te vergemakkelijken.
@@ -118,7 +132,7 @@ In deze proef gericht op het vergelijken van de performantie, rendering en lifes
 Xcode Instruments is een krachtige tool die wordt geleverd als onderdeel van Apple's Xcode-ontwikkelomgeving. Het stelt ontwikkelaars in staat om diepgaande analyses uit te voeren van de prestaties en het gedrag van hun iOS-, macOS-, watchOS- en tvOS-apps. Met Instruments kunnen ontwikkelaars problemen met prestaties, geheugen, energieverbruik en meer opsporen en diagnosticeren. 
 
 \subsection{XCode Profiler}
-Deze tool stelt ontwikkelaars in staat om de prestaties van hun iOS-, macOS-, watchOS- en tvOS-apps te meten en te optimaliseren. De profiler biedt inzicht in de runtime-gedrag van de app, inclusief CPU-gebruik, geheugenverbruik, netwerkactiviteit en meer. Met deze tool kunnen we in deze proef de performantie op basis van CPU-gebruik, geheugenverbruik, enz. gaan meten. 
+Deze tool stelt ontwikkelaars in staat om de prestaties van hun iOS-, macOS-, watchOS- en tvOS-apps te meten en te optimaliseren. De profiler biedt inzicht in het runtime-gedrag van de app, inclusief CPU-gebruik, geheugenverbruik, netwerkactiviteit en meer. Met deze tool kunnen we in deze proef de performantie op basis van CPU-gebruik, geheugenverbruik, enz. gaan meten. 
 \paragraph{CPU-profiler}
 Hiermee kan men het CPU-gebruik van een app analyseren. Men kan zien welke delen van de code veel CPU-tijd verbruiken en mogelijk optimalisaties doorvoeren om de prestaties te verbeteren.
 \begin{figure}[H]
@@ -208,7 +222,7 @@ Property wrappers zijn een krachtige tool in Swift, omdat ze een compacte en ele
 
 
 \subsection{@State}
-\autocite{AppleState} State is een property wrapper die een waarde kan lezen en schrijven die wordt beheerd door SwiftUI. Het wordt gebruikt als de enige bron van de 'waarheid' (truth) voor een gegeven value type die binnen de view hierarchy wordt opgeslagen. State wordt gebruikt voor het beheren van lokale toestanden binnen een view, waarbij het automatisch reageren op wijzigingen in de waarde en het opnieuw renderen van de bijbehorende view.
+\autocite{AppleState} State is een property wrapper die een waarde kan lezen en schrijven die wordt beheerd door SwiftUI. Het wordt gebruikt als de enige bron van de 'waarheid' (truth) voor een gegeven value type die binnen de view hierarchy wordt opgeslagen. State wordt gebruikt voor het beheren van lokale states binnen een view, waarbij het automatisch reageert op wijzigingen in de waarde en de bijbehorende view opnieuw rendert.
 
 \begin{swift}[caption=Example of @State code \autocite{AppleState}, label=state_example]
     struct PlayButton: View {

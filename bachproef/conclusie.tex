@@ -19,7 +19,7 @@
 Op basis van de voorgaande gegevens kunnen we de invloed van diverse methoden van gegevensoverdracht naar SwiftUI views op de performance, renderingfrequentie en levenscyclussen van bindings als volgt analyseren:
 
 \subsection{Performance}
-De performance wordt gemeten aan de hand van de totale CPU-gebruikstijd en de totale CPU-weight:
+De performance wordt gemeten aan de hand van de totale CPU-gebruikstijd(hoeveelheid tijd die de CPU daadwerkelijk besteed aan het uitvoeren van een bepaalde proces) en de totale CPU-weight(hoeveelheid CPU-werk (of cycles) dat een proces heeft gebruikt):
 \begin{itemize}
     \item \textit{EnvironmentObject} en \textit{ObservableObject} scoren over het algemeen goed qua CPU-gebruik, waarbij ObservableObject iets meer CPU-belasting veroorzaakt.
     \item \textit{Binding} presteert consistent slecht qua CPU-gebruik, vooral in complexe scenario's met meerdere subviews.
@@ -74,7 +74,10 @@ De "Observable" macro van Apple is een moderne methode voor gegevensoverdracht i
 \end{itemize}
 
 \subsection{Conclusie}
-De "Observable" macro is een aanzienlijke verbetering ten opzichte van \textit{Binding} en biedt een modernere en efficiëntere aanpak voor gegevensoverdracht in SwiftUI. Hoewel \textit{EnvironmentObject} en \textit{ObservableObject} vaak betere prestaties leveren, is ``Observable'' een aantrekkelijke keuze voor ontwikkelaars die een balans zoeken tussen gebruiksgemak en efficiëntie. Het gebruik van "Observable" kan leiden tot betere prestaties en een responsievere gebruikersinterface in veel scenario's, waardoor het een waardevolle toevoeging is aan de toolkit van elke SwiftUI-ontwikkelaar.
+De \textit{Observable} macro biedt aanzienlijke verbeteringen ten opzichte van \textit{Binding} in specifieke scenario's waar complexere dataoverdracht vereist is in SwiftUI. Terwijl \textit{Binding} ideaal is voor primitieve types en het doorgeven van eenvoudige waarden tussen views, is \texttt{Observable} beter geschikt voor het beheren van complexere objecten en data. 
+
+Hoewel \textit{EnvironmentObject} en \textit{ObservableObject} vaak superieure prestaties bieden in termen van CPU-gebruik en vernieuwingstijd, biedt \textit{Observable} een modernere en efficiëntere aanpak voor gegevensoverdracht die een balans vindt tussen gebruiksgemak en efficiëntie. Het gebruik van \textit{Observable} kan leiden tot betere prestaties en een responsievere gebruikersinterface in veel scenario's, waardoor het een waardevolle toevoeging is aan de toolkit van elke SwiftUI-ontwikkelaar. Het is echter belangrijk om de juiste tool voor de juiste taak te kiezen, waarbij \textit{Binding} vooral nuttig blijft voor het beheren van eenvoudige, primitieve gegevens.
+
 
 
 \newpage
